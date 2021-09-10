@@ -10,6 +10,12 @@
 		AAC6FBEB26EB1ED300E5AE73 /* Essentials.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAC6FBE126EB1ED200E5AE73 /* Essentials.framework */; };
 		AAC6FBF026EB1ED300E5AE73 /* EssentialsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC6FBEF26EB1ED300E5AE73 /* EssentialsTests.swift */; };
 		AAC6FBF226EB1ED300E5AE73 /* Essentials.h in Headers */ = {isa = PBXBuildFile; fileRef = AAC6FBE426EB1ED200E5AE73 /* Essentials.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AAC6FBFD26EB1FCD00E5AE73 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC6FBFC26EB1FCD00E5AE73 /* UIView.swift */; };
+		AAC6FC0026EB215F00E5AE73 /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC6FBFF26EB215F00E5AE73 /* Animations.swift */; };
+		AAC6FC0226EB25EE00E5AE73 /* UITapGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC6FC0126EB25EE00E5AE73 /* UITapGestureRecognizer.swift */; };
+		AAC6FC0426EB262800E5AE73 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC6FC0326EB262800E5AE73 /* Double.swift */; };
+		AAC6FC0626EB268F00E5AE73 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC6FC0526EB268F00E5AE73 /* String.swift */; };
+		AAC6FC0826EB275600E5AE73 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC6FC0726EB275600E5AE73 /* Array.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +35,12 @@
 		AAC6FBEA26EB1ED300E5AE73 /* EssentialsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EssentialsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAC6FBEF26EB1ED300E5AE73 /* EssentialsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssentialsTests.swift; sourceTree = "<group>"; };
 		AAC6FBF126EB1ED300E5AE73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AAC6FBFC26EB1FCD00E5AE73 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		AAC6FBFF26EB215F00E5AE73 /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
+		AAC6FC0126EB25EE00E5AE73 /* UITapGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITapGestureRecognizer.swift; sourceTree = "<group>"; };
+		AAC6FC0326EB262800E5AE73 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
+		AAC6FC0526EB268F00E5AE73 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		AAC6FC0726EB275600E5AE73 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +83,7 @@
 		AAC6FBE326EB1ED200E5AE73 /* Essentials */ = {
 			isa = PBXGroup;
 			children = (
+				AAC6FBFE26EB1FFF00E5AE73 /* Utilis */,
 				AAC6FBE426EB1ED200E5AE73 /* Essentials.h */,
 				AAC6FBE526EB1ED200E5AE73 /* Info.plist */,
 			);
@@ -84,6 +97,27 @@
 				AAC6FBF126EB1ED300E5AE73 /* Info.plist */,
 			);
 			path = EssentialsTests;
+			sourceTree = "<group>";
+		};
+		AAC6FBFB26EB1FA600E5AE73 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AAC6FBFC26EB1FCD00E5AE73 /* UIView.swift */,
+				AAC6FBFF26EB215F00E5AE73 /* Animations.swift */,
+				AAC6FC0126EB25EE00E5AE73 /* UITapGestureRecognizer.swift */,
+				AAC6FC0326EB262800E5AE73 /* Double.swift */,
+				AAC6FC0526EB268F00E5AE73 /* String.swift */,
+				AAC6FC0726EB275600E5AE73 /* Array.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		AAC6FBFE26EB1FFF00E5AE73 /* Utilis */ = {
+			isa = PBXGroup;
+			children = (
+				AAC6FBFB26EB1FA600E5AE73 /* Extensions */,
+			);
+			path = Utilis;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -147,6 +181,7 @@
 				TargetAttributes = {
 					AAC6FBE026EB1ED200E5AE73 = {
 						CreatedOnToolsVersion = 12.5.1;
+						LastSwiftMigration = 1250;
 					};
 					AAC6FBE926EB1ED300E5AE73 = {
 						CreatedOnToolsVersion = 12.5.1;
@@ -194,6 +229,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAC6FC0226EB25EE00E5AE73 /* UITapGestureRecognizer.swift in Sources */,
+				AAC6FBFD26EB1FCD00E5AE73 /* UIView.swift in Sources */,
+				AAC6FC0626EB268F00E5AE73 /* String.swift in Sources */,
+				AAC6FC0826EB275600E5AE73 /* Array.swift in Sources */,
+				AAC6FC0426EB262800E5AE73 /* Double.swift in Sources */,
+				AAC6FC0026EB215F00E5AE73 /* Animations.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +382,7 @@
 		AAC6FBF626EB1ED300E5AE73 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -357,6 +399,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.yordan.Essentials;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -365,6 +408,7 @@
 		AAC6FBF726EB1ED300E5AE73 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -389,6 +433,7 @@
 		AAC6FBF926EB1ED300E5AE73 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = EssentialsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -406,6 +451,7 @@
 		AAC6FBFA26EB1ED300E5AE73 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = EssentialsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
