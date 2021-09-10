@@ -6,7 +6,7 @@
 //
 
 import Foundation
-extension Double {
+public extension Double {
     func formatted(f: String = "0.2") -> String {
         return String(format: "%\(f)f", self)
     }

@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-extension UIView {
+public extension UIView {
     func animate(_ animations: [Animations]) {
         guard !animations.isEmpty else { return }
         var animations = animations

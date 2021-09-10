@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-extension UITapGestureRecognizer {
+public extension UITapGestureRecognizer {
     func didTapAttributedTextInLabel(label: UILabel, inRange targetRange: NSRange, add: Int? = 0) -> Bool {
         guard let attributedText = label.attributedText else { return false }
 

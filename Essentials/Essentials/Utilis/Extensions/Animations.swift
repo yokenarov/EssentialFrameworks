@@ -8,11 +8,11 @@
 import Foundation
 import UIKit
 
-struct Animations {
+public struct Animations {
     var duration: TimeInterval
     var closure: (UIView) -> Void
 }
-extension Animations {
+public extension Animations {
     static func fadeIn(duration: TimeInterval) -> Animations {
         return Animations(duration: duration, closure: { $0.alpha = 1 })
     }
