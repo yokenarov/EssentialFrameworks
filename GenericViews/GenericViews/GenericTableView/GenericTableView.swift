@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-
 /**
  This is a reusable tableview with a number of functionalities that can work with any type that conforms to the GenericModelType.
  */
@@ -31,8 +30,6 @@ public class GenericTableView: UITableView, UITableViewDataSource, UITableViewDe
     public var shouldShowSelection = false
     weak var loadMoreDelegate: LoadMoreFromBottomDelegate?
     
-    //    var primaryFilter: P?
-    //    var secondaryFilter: S?
     //MARK: - Closures
     
     var cellForRowAt: ((Model, GenericCell) -> ())?
@@ -101,8 +98,13 @@ public class GenericTableView: UITableView, UITableViewDataSource, UITableViewDe
         
     }
     
+    public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row + 1 == self.getCorrectArray().count {
+            loadMoreDelegate?.loadMoreFromBottom(scrollView: UIScrollView())
+            return
+        }
+    }
     //MARK: - Helper Functions
-  
     public func refreshIdentificatorWhenNewItemIsInsertedAtTopOfOriginalArray() {
         for i in 1...items.count - 1 {
             items[i].identificator = "\(i)"
@@ -128,19 +130,8 @@ public class GenericTableView: UITableView, UITableViewDataSource, UITableViewDe
         self.reloadData()
     }
     
-    //    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
-    //        if (scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height) + 50) {
-    //            loadMoreDelegate?.loadMoreFromBottom(scrollView: scrollView)
-    //            return
-    //        }
-    //    }
     
-    public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row + 1 == self.getCorrectArray().count {
-            loadMoreDelegate?.loadMoreFromBottom(scrollView: UIScrollView())
-            return
-        }
-    }
+    
     
     func getCorrectArray() -> [GenericModelType] {
         if isAllSelected {
@@ -156,7 +147,7 @@ public class GenericTableView: UITableView, UITableViewDataSource, UITableViewDe
 }
 //MARK: - Extensions
   extension SelectableTableViewRows {
-    //MARK: UpdateSelectedItems
+    //MARK: UpdateSelectedItemsArray
     func updateSelectedItemsWithNew(identifier: Identificator) {
         if self.selectedItems.count != 0 {
             if selectedItems.contains(identifier) {
