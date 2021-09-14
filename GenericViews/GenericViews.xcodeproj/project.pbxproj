@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		AAE5B0D526EE440C008E472D /* GenericTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5B0D426EE440C008E472D /* GenericTableView.swift */; };
 		AAE5B0D926EE4451008E472D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5B0D826EE4451008E472D /* Extensions.swift */; };
-		AAE5B0DC26EE4673008E472D /* GenericModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5B0DB26EE4673008E472D /* GenericModel.swift */; };
 		AAE5B0E026EE471E008E472D /* GenericProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5B0DF26EE471E008E472D /* GenericProtocols.swift */; };
 		AAEFFF8A26EE42C1006BE7B7 /* GenericViews.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAEFFF8026EE42C1006BE7B7 /* GenericViews.framework */; };
 		AAEFFF8F26EE42C1006BE7B7 /* GenericViewsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEFFF8E26EE42C1006BE7B7 /* GenericViewsTests.swift */; };
@@ -29,7 +28,6 @@
 /* Begin PBXFileReference section */
 		AAE5B0D426EE440C008E472D /* GenericTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericTableView.swift; sourceTree = "<group>"; };
 		AAE5B0D826EE4451008E472D /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		AAE5B0DB26EE4673008E472D /* GenericModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericModel.swift; sourceTree = "<group>"; };
 		AAE5B0DF26EE471E008E472D /* GenericProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericProtocols.swift; sourceTree = "<group>"; };
 		AAEFFF8026EE42C1006BE7B7 /* GenericViews.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GenericViews.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAEFFF8326EE42C1006BE7B7 /* GenericViews.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GenericViews.h; sourceTree = "<group>"; };
@@ -80,7 +78,6 @@
 		AAE5B0DA26EE465E008E472D /* SupportingClasses */ = {
 			isa = PBXGroup;
 			children = (
-				AAE5B0DB26EE4673008E472D /* GenericModel.swift */,
 			);
 			path = SupportingClasses;
 			sourceTree = "<group>";
@@ -239,7 +236,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AAE5B0DC26EE4673008E472D /* GenericModel.swift in Sources */,
 				AAE5B0D526EE440C008E472D /* GenericTableView.swift in Sources */,
 				AAE5B0D926EE4451008E472D /* Extensions.swift in Sources */,
 				AAE5B0E026EE471E008E472D /* GenericProtocols.swift in Sources */,

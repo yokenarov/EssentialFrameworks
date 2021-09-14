@@ -9,16 +9,15 @@ import Foundation
 import UIKit
 //MARK: - Supporting Classes
 ///This struct contains the identificator of an individual item and the indexPath at which it can be found in the items or filteredItems array. It is used in the selection of a cell and when a cell needs to be deleted.
-struct Identificator: Equatable {
-    var identificator: String
-    var indexPath: Int
+public struct Identificator: Equatable {
+    public init (identificatior: String, indexPath: Int) {
+        self.identificator = identificatior
+        self.indexPath = indexPath
+    }
+   public var identificator: String
+   public var indexPath: Int
 }
  
-extension UITableViewCell {
-    func cellReuseIdentifier() -> String {
-        return "\(self)"
-  }
-}
 // MARK: - Filterable Conformance
 extension String: Filterable {}
 extension Int: Filterable {}
@@ -50,6 +49,8 @@ extension GenericCell {
     func getHeight() -> CGFloat {
         return heightOfCell
     }
+    
+    func cellReuseIdentifier() -> String { "\(Self.self)" }
 }
 
 extension SelectableCell {

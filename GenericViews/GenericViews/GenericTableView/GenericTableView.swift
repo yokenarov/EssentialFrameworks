@@ -16,19 +16,19 @@ import UIKit
 /// - Selectable Cells - With this functionality you can select any cell and perform actions on it. The table view will configure the cell's state internally, depending on the implementation you provide in SelectableCell.configureForSelection function. Currently the only action that can be done with the selected state is deletion. In the future, further functionalities like expanding cells can be added.
 /// - Filtration - With this functionality you can filter the table view items array by either a primary filter value or by a secondary filter value. Two functions with a default implementation are provided for you within an extension of this class.
 @available(iOS 13.0.0, *)
-class GenericTableView: UITableView, UITableViewDataSource, UITableViewDelegate, GenericTableViewInterface, SelectableTableViewRows {
-    typealias Model = GenericModelType
-    typealias FilterableModel = GenericModelType
+public class GenericTableView: UITableView, UITableViewDataSource, UITableViewDelegate, GenericTableViewInterface, SelectableTableViewRows {
+    public typealias Model = GenericModelType
+    public typealias FilterableModel = GenericModelType
     
     //MARK: - Variables
-    var items: [Model]
-    var filteredItems: [FilterableModel]
-    var cellTypes: [GenericCell]
-    var selectedItems: [Identificator]
-    var filtratedSelecteditems: [String] = []
-    var isAllSelected: Bool
-    var isSecondaryFilterAppliedToAll: Bool = false
-    var shouldShowSelection = false
+    public var items: [Model]
+    public var filteredItems: [FilterableModel]
+    public var cellTypes: [GenericCell]
+    public var selectedItems: [Identificator]
+    public var filtratedSelecteditems: [String] = []
+    public var isAllSelected: Bool
+    public var isSecondaryFilterAppliedToAll: Bool = false
+    public var shouldShowSelection = false
     weak var loadMoreDelegate: LoadMoreFromBottomDelegate?
     
     //    var primaryFilter: P?
@@ -39,7 +39,7 @@ class GenericTableView: UITableView, UITableViewDataSource, UITableViewDelegate,
     var didSelectRowAt: ((Model) -> ())?
     
     //MARK: - Initializer
-    init (frame:CGRect, items:[Model],cellTypes: [GenericCell],tableViewStyle: UITableView.Style, loadmoreDelegate: LoadMoreFromBottomDelegate, isAllSelected: Bool, cellForRowAt: @escaping (Model, GenericCell) -> (), didSelectRowAt: @escaping (Model) -> ()) {
+    public init (frame:CGRect, items:[Model],cellTypes: [GenericCell],tableViewStyle: UITableView.Style, loadmoreDelegate: LoadMoreFromBottomDelegate, isAllSelected: Bool, cellForRowAt: @escaping (Model, GenericCell) -> (), didSelectRowAt: @escaping (Model) -> ()) {
         self.items = items
         self.loadMoreDelegate = loadmoreDelegate
         self.cellTypes = cellTypes
@@ -51,7 +51,7 @@ class GenericTableView: UITableView, UITableViewDataSource, UITableViewDelegate,
         super.init(frame: frame, style: tableViewStyle)
         for item in cellTypes {
             let c = item.getClass()
-            self.register(c, forCellReuseIdentifier: item.cellReuseIdentifier())
+            self.register(c.self, forCellReuseIdentifier: item.cellReuseIdentifier())
             self.register(UINib(nibName: item.cellReuseIdentifier(), bundle: nil), forCellReuseIdentifier: item.cellReuseIdentifier())
         }
         self.delegate = self
@@ -64,16 +64,16 @@ class GenericTableView: UITableView, UITableViewDataSource, UITableViewDelegate,
     }
     
     //MARK: - TableView Delegate&DataSource Methods
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+   public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return getCorrectArray().count
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+   public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let item = getCorrectArray()[indexPath.row]
         return item.cellRepresentingModelType.getHeight()
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellRepresentingModelType = getCorrectArray()[indexPath.row].cellRepresentingModelType
         
         let c = cellRepresentingModelType
@@ -85,15 +85,15 @@ class GenericTableView: UITableView, UITableViewDataSource, UITableViewDelegate,
         
         if let cell = cell as? SelectableCell {
             item.identificator = "\(indexPath.row)"
-            item.tableViewIdentificator = Identificator(identificator: item.identificator, indexPath: indexPath.row)
-            cell.configureForSelection(selectedItems: self.selectedItems, identificator: Identificator(identificator: item.identificator, indexPath: indexPath.row), shouldShowSelection: shouldShowSelection)
+            item.tableViewIdentificator = Identificator(identificatior: item.identificator, indexPath: indexPath.row)
+            cell.configureForSelection(selectedItems: self.selectedItems, identificator: Identificator(identificatior: item.identificator, indexPath: indexPath.row), shouldShowSelection: shouldShowSelection)
         }else {
             cell.isUserInteractionEnabled = false
         }
         return  cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = getCorrectArray()[indexPath.row]
         didSelectRowAt?(item)
         tableView.deselectRow(at: indexPath, animated: true)
@@ -103,27 +103,27 @@ class GenericTableView: UITableView, UITableViewDataSource, UITableViewDelegate,
     
     //MARK: - Helper Functions
   
-    func refreshIdentificatorWhenNewItemIsInsertedAtTopOfOriginalArray() {
+    public func refreshIdentificatorWhenNewItemIsInsertedAtTopOfOriginalArray() {
         for i in 1...items.count - 1 {
             items[i].identificator = "\(i)"
         }
     }
     
-    func reloadWithSelectedAll() {
+    public func reloadWithSelectedAll() {
         if isAllSelected && !isSecondaryFilterAppliedToAll {
             for row in 0...items.count - 1 {
-                self.selectedItems.append(Identificator(identificator: items[row].identificator, indexPath: row))
+                self.selectedItems.append(Identificator(identificatior: items[row].identificator, indexPath: row))
             }
             self.reloadData()
         }else {
             for row in 0...filteredItems.count - 1 {
-                self.selectedItems.append(Identificator(identificator: filteredItems[row].identificator, indexPath: row))
+                self.selectedItems.append(Identificator(identificatior: filteredItems[row].identificator, indexPath: row))
             }
             self.reloadData()
         }
     }
     
-    func reloadWithDeselectAll() {
+   public func reloadWithDeselectAll() {
         self.selectedItems.removeAll()
         self.reloadData()
     }
@@ -135,7 +135,7 @@ class GenericTableView: UITableView, UITableViewDataSource, UITableViewDelegate,
     //        }
     //    }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row + 1 == self.getCorrectArray().count {
             loadMoreDelegate?.loadMoreFromBottom(scrollView: UIScrollView())
             return
@@ -155,7 +155,7 @@ class GenericTableView: UITableView, UITableViewDataSource, UITableViewDelegate,
     }
 }
 //MARK: - Extensions
-extension SelectableTableViewRows {
+  extension SelectableTableViewRows {
     //MARK: UpdateSelectedItems
     func updateSelectedItemsWithNew(identifier: Identificator) {
         if self.selectedItems.count != 0 {
@@ -172,7 +172,7 @@ extension SelectableTableViewRows {
 
 // MARK: - Helper Functions for Notifications
 @available(iOS 13.0.0, *)
-extension GenericTableView {
+  extension GenericTableView {
     //MARK: Reload Functions
     func reloadWithNewItemsOnTop<F>(newItems: [GenericModelType], secondaryFilter: F) where F: Filterable, F: Equatable{
         var trappedIndexPaths: [IndexPath] = []
@@ -196,7 +196,7 @@ extension GenericTableView {
         }
     }
     
-    func reloadDataWithDeletedItems() {
+   public  func reloadDataWithDeletedItems() {
         if self.selectedItems.count != 0 {
             
             var trappedIndexPaths: [IndexPath] = []
@@ -228,7 +228,7 @@ extension GenericTableView {
         }
     }
     
-    func reloadFromBottom<F>(newItems: [GenericModelType], secondaryFilter: F, scrollView: UIScrollView) where F: Equatable, F: Filterable{
+     func reloadFromBottom<F>(newItems: [GenericModelType], secondaryFilter: F, scrollView: UIScrollView) where F: Equatable, F: Filterable{
         
         var heightOfAllCells: CGFloat = 0
         guard newItems.count > 0 else { return }
@@ -257,7 +257,7 @@ extension GenericTableView {
     }
     
     //MARK : Primary Filter
-    func primaryFilterBy<P>(providedValue: P) where P:Equatable,P:Filterable {
+     func primaryFilterBy<P>(providedValue: P) where P:Equatable,P:Filterable {
         self.filteredItems = self.items.filter({ item in
             providedValue.isEqualTo(other: item.primaryValueToFilterBy) ? item.primaryValueToFilterBy as? P == providedValue : false
         })
@@ -265,7 +265,7 @@ extension GenericTableView {
     }
     
     //MARK : Secondary Filter
-    func secondaryFilterBY<FilterValue>(providedValue: FilterValue, primaryFilter: FilterValue, secondaryFilter: FilterValue) where FilterValue: Equatable, FilterValue: Filterable {
+     func secondaryFilterBY<FilterValue>(providedValue: FilterValue, primaryFilter: FilterValue, secondaryFilter: FilterValue) where FilterValue: Equatable, FilterValue: Filterable {
         
         let originalItems = self.items
         
