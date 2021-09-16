@@ -21,40 +21,40 @@ public class GenericTableView: UITableView, UITableViewDataSource, UITableViewDe
     
     //MARK: - Variables
     public var items: [Model]
-    public var filteredItems: [FilterableModel]
-    public var cellTypes: [GenericCell]
-    public var selectedItems: [Identificator]
-    public var filtratedSelecteditems: [String] = []
-    public var isAllSelected: Bool
-    public var isSecondaryFilterAppliedToAll: Bool = false
-    public var shouldShowSelection = false
-    weak var loadMoreDelegate: LoadMoreFromBottomDelegate?
+    internal var filteredItems: [FilterableModel]
+    internal var selectedItems: [Identificator]
+    internal var filtratedSelecteditems: [String]    = []
+    internal var isAllSelected: Bool
+    internal var isSecondaryFilterAppliedToAll: Bool = false
+    private  var shouldShowSelection                 = false
+    private  var allCellClasses: [GenericCell.Type]  = []
+    private  weak var loadMoreDelegate: LoadMoreFromBottomDelegate?
     
     //MARK: - Closures
     
     var cellForRowAt: ((Model, GenericCell) -> ())?
     var didSelectRowAt: ((Model) -> ())?
     
-    //MARK: - Initializer
-    public init (frame:CGRect, items:[Model],cellTypes: [GenericCell],tableViewStyle: UITableView.Style, loadmoreDelegate: LoadMoreFromBottomDelegate, isAllSelected: Bool, cellForRowAt: @escaping (Model, GenericCell) -> (), didSelectRowAt: @escaping (Model) -> ()) {
-        self.items = items
-        self.loadMoreDelegate = loadmoreDelegate
-        self.cellTypes = cellTypes
-        self.cellForRowAt = cellForRowAt
-        self.didSelectRowAt = didSelectRowAt
-        self.selectedItems = []
-        self.filteredItems = self.items
-        self.isAllSelected = isAllSelected
+    //MARK: - Initializer 
+    public init (frame:CGRect, items:[Model],tableViewStyle: UITableView.Style, loadmoreDelegate: LoadMoreFromBottomDelegate, isAllSelected: Bool, cellForRowAt: @escaping (Model, GenericCell) -> (), didSelectRowAt: @escaping (Model) -> ()) {
+        self.items                                     = items
+        self.loadMoreDelegate                          = loadmoreDelegate
+        self.cellForRowAt                              = cellForRowAt
+        self.didSelectRowAt                            = didSelectRowAt
+        self.selectedItems                             = []
+        self.filteredItems                             = self.items
+        self.isAllSelected                             = isAllSelected
         super.init(frame: frame, style: tableViewStyle)
-        for item in cellTypes {
-            let c = item.getClass()
-            self.register(c.self, forCellReuseIdentifier: item.cellReuseIdentifier())
-            self.register(UINib(nibName: item.cellReuseIdentifier(), bundle: nil), forCellReuseIdentifier: item.cellReuseIdentifier())
-        }
-        self.delegate = self
-        self.dataSource = self
-        self.estimatedRowHeight = 130
+        self.allCellClasses                            = allClasses { $0.compactMap { $0 as? GenericCell.Type } }
+        self.delegate                                  = self
+        self.dataSource                                = self
+        self.estimatedRowHeight                        = 130
         self.translatesAutoresizingMaskIntoConstraints = false
+        
+        for item in allCellClasses {
+        self.register(item, forCellReuseIdentifier: "\(item)")
+        self.register(UINib(nibName: "\(item)", bundle: nil), forCellReuseIdentifier: "\(item)")
+        }
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -82,8 +82,10 @@ public class GenericTableView: UITableView, UITableViewDataSource, UITableViewDe
         
         if let cell = cell as? SelectableCell {
             item.identificator = "\(indexPath.row)"
+             
             item.tableViewIdentificator = Identificator(identificatior: item.identificator, indexPath: indexPath.row)
             cell.configureForSelection(selectedItems: self.selectedItems, identificator: Identificator(identificatior: item.identificator, indexPath: indexPath.row), shouldShowSelection: shouldShowSelection)
+            cell.isUserInteractionEnabled = true
         }else {
             cell.isUserInteractionEnabled = false
         }
@@ -92,6 +94,7 @@ public class GenericTableView: UITableView, UITableViewDataSource, UITableViewDe
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = getCorrectArray()[indexPath.row]
+        updateSelectedItemsWithNew(identifier: item.tableViewIdentificator)
         didSelectRowAt?(item)
         tableView.deselectRow(at: indexPath, animated: true)
         tableView.reloadRows(at: [indexPath], with: .fade)
@@ -130,8 +133,22 @@ public class GenericTableView: UITableView, UITableViewDataSource, UITableViewDe
         self.reloadData()
     }
     
-    
-    
+    ///Returns all the classes that conform to a specific protocol.
+    private func allClasses<R>(
+      _ body: (UnsafeBufferPointer<AnyClass>) throws -> R
+    ) rethrows -> R {
+
+      var count: UInt32 = 0
+      let classListPtr = objc_copyClassList(&count)
+      defer {
+        free(UnsafeMutableRawPointer(classListPtr))
+      }
+      let classListBuffer = UnsafeBufferPointer(
+        start: classListPtr, count: Int(count)
+      )
+      
+      return try body(classListBuffer)
+    }
     
     func getCorrectArray() -> [GenericModelType] {
         if isAllSelected {
@@ -158,6 +175,7 @@ public class GenericTableView: UITableView, UITableViewDataSource, UITableViewDe
         } else {
             self.selectedItems.append(identifier)
         }
+//        reloadData()
     }
 }
 

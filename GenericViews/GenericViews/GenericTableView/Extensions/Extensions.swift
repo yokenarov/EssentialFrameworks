@@ -54,7 +54,7 @@ extension GenericCell {
 }
 
 extension SelectableCell {
-    mutating func configureForSelection(selectedItems: [Identificator],identificator: Identificator, shouldShowSelection: Bool) { 
+    func configureForSelection(selectedItems: [Identificator],identificator: Identificator, shouldShowSelection: Bool) { 
         identifier = identificator
         if self.shouldShowSelection {
             if  selectedItems.contains(identificator) {
