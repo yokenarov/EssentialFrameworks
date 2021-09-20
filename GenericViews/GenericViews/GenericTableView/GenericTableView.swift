@@ -8,7 +8,10 @@
 
 import Foundation
 import UIKit
+
+#if canImport(Essentials)
 import Essentials
+#endif
 /**
  This is a reusable tableview with a number of functionalities that can work with any type that conforms to the GenericModelType.
  */
@@ -44,7 +47,9 @@ public class GenericTableView: UITableView, UITableViewDataSource, UITableViewDe
         self.filteredItems                             = self.items
         self.isAllSelected                             = isAllSelected
         super.init(frame: frame, style: tableViewStyle)
+        #if canImport(Essentials)
         self.allCellClasses                            = allClasses { $0.compactMap { $0 as? GenericCell.Type } }
+        #endif
         self.delegate                                  = self
         self.dataSource                                = self
         self.estimatedRowHeight                        = 130
