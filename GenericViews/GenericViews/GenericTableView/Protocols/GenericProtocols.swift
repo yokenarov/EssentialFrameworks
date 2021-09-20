@@ -56,7 +56,7 @@ public protocol SelectableCell: UITableViewCell {
     var identifier: Identificator { get set }
     func configureForSelection(selectedItems: [Identificator], identificator: Identificator, shouldShowSelection: Bool)
 }
-
+//Every cell intended to be used in the GenericTableView, should adhere to this protocol.
 public protocol GenericCell: UITableViewCell {
     var heightOfCell: CGFloat { get set }
 }

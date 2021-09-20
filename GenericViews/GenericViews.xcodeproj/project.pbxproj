@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA9750BC26F8A0C400122F49 /* Essentials.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA9750BB26F8A0C400122F49 /* Essentials.framework */; };
+		AA9750BD26F8A0C400122F49 /* Essentials.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AA9750BB26F8A0C400122F49 /* Essentials.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AAE5B0D526EE440C008E472D /* GenericTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5B0D426EE440C008E472D /* GenericTableView.swift */; };
 		AAE5B0D926EE4451008E472D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5B0D826EE4451008E472D /* Extensions.swift */; };
 		AAE5B0E026EE471E008E472D /* GenericProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5B0DF26EE471E008E472D /* GenericProtocols.swift */; };
@@ -25,7 +27,22 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		AA9750BE26F8A0C400122F49 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				AA9750BD26F8A0C400122F49 /* Essentials.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		AA9750BB26F8A0C400122F49 /* Essentials.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Essentials.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAE5B0D426EE440C008E472D /* GenericTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericTableView.swift; sourceTree = "<group>"; };
 		AAE5B0D826EE4451008E472D /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		AAE5B0DF26EE471E008E472D /* GenericProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericProtocols.swift; sourceTree = "<group>"; };
@@ -42,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA9750BC26F8A0C400122F49 /* Essentials.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,6 +74,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AA9750BA26F8A0C400122F49 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AA9750BB26F8A0C400122F49 /* Essentials.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		AAE5B0D326EE43EA008E472D /* GenericTableView */ = {
 			isa = PBXGroup;
 			children = (
@@ -96,6 +122,7 @@
 				AAEFFF8226EE42C1006BE7B7 /* GenericViews */,
 				AAEFFF8D26EE42C1006BE7B7 /* GenericViewsTests */,
 				AAEFFF8126EE42C1006BE7B7 /* Products */,
+				AA9750BA26F8A0C400122F49 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -149,6 +176,7 @@
 				AAEFFF7C26EE42C1006BE7B7 /* Sources */,
 				AAEFFF7D26EE42C1006BE7B7 /* Frameworks */,
 				AAEFFF7E26EE42C1006BE7B7 /* Resources */,
+				AA9750BE26F8A0C400122F49 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

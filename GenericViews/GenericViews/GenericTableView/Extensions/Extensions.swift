@@ -64,4 +64,6 @@ extension SelectableCell {
             }
         }
     }
-}
+} 
+//NSOBJECT
+

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA9750B926F8A09700122F49 /* NSObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9750B826F8A09700122F49 /* NSObject.swift */; };
 		AAC6FBEB26EB1ED300E5AE73 /* Essentials.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAC6FBE126EB1ED200E5AE73 /* Essentials.framework */; };
 		AAC6FBF026EB1ED300E5AE73 /* EssentialsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC6FBEF26EB1ED300E5AE73 /* EssentialsTests.swift */; };
 		AAC6FBF226EB1ED300E5AE73 /* Essentials.h in Headers */ = {isa = PBXBuildFile; fileRef = AAC6FBE426EB1ED200E5AE73 /* Essentials.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -29,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AA9750B826F8A09700122F49 /* NSObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSObject.swift; sourceTree = "<group>"; };
 		AAC6FBE126EB1ED200E5AE73 /* Essentials.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Essentials.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAC6FBE426EB1ED200E5AE73 /* Essentials.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Essentials.h; sourceTree = "<group>"; };
 		AAC6FBE526EB1ED200E5AE73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				AAC6FC0326EB262800E5AE73 /* Double.swift */,
 				AAC6FC0526EB268F00E5AE73 /* String.swift */,
 				AAC6FC0726EB275600E5AE73 /* Array.swift */,
+				AA9750B826F8A09700122F49 /* NSObject.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -232,6 +235,7 @@
 				AAC6FC0226EB25EE00E5AE73 /* UITapGestureRecognizer.swift in Sources */,
 				AAC6FBFD26EB1FCD00E5AE73 /* UIView.swift in Sources */,
 				AAC6FC0626EB268F00E5AE73 /* String.swift in Sources */,
+				AA9750B926F8A09700122F49 /* NSObject.swift in Sources */,
 				AAC6FC0826EB275600E5AE73 /* Array.swift in Sources */,
 				AAC6FC0426EB262800E5AE73 /* Double.swift in Sources */,
 				AAC6FC0026EB215F00E5AE73 /* Animations.swift in Sources */,

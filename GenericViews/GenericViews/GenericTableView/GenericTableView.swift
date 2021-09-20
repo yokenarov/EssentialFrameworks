@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Essentials
 /**
  This is a reusable tableview with a number of functionalities that can work with any type that conforms to the GenericModelType.
  */
@@ -18,7 +19,6 @@ import UIKit
 public class GenericTableView: UITableView, UITableViewDataSource, UITableViewDelegate, GenericTableViewInterface, SelectableTableViewRows {
     public typealias Model = GenericModelType
     public typealias FilterableModel = GenericModelType
-    
     //MARK: - Variables
     public var items: [Model]
     internal var filteredItems: [FilterableModel]
@@ -31,7 +31,6 @@ public class GenericTableView: UITableView, UITableViewDataSource, UITableViewDe
     private  weak var loadMoreDelegate: LoadMoreFromBottomDelegate?
     
     //MARK: - Closures
-    
     var cellForRowAt: ((Model, GenericCell) -> ())?
     var didSelectRowAt: ((Model) -> ())?
     
@@ -52,8 +51,8 @@ public class GenericTableView: UITableView, UITableViewDataSource, UITableViewDe
         self.translatesAutoresizingMaskIntoConstraints = false
         
         for item in allCellClasses {
-        self.register(item, forCellReuseIdentifier: "\(item)")
-        self.register(UINib(nibName: "\(item)", bundle: nil), forCellReuseIdentifier: "\(item)")
+            self.register(item, forCellReuseIdentifier: "\(item)")
+            self.register(UINib(nibName: "\(item)", bundle: nil), forCellReuseIdentifier: "\(item)")
         }
     }
     required init?(coder: NSCoder) {
@@ -61,11 +60,11 @@ public class GenericTableView: UITableView, UITableViewDataSource, UITableViewDe
     }
     
     //MARK: - TableView Delegate&DataSource Methods
-   public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return getCorrectArray().count
     }
     
-   public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let item = getCorrectArray()[indexPath.row]
         return item.cellRepresentingModelType.getHeight()
     }
@@ -82,7 +81,7 @@ public class GenericTableView: UITableView, UITableViewDataSource, UITableViewDe
         
         if let cell = cell as? SelectableCell {
             item.identificator = "\(indexPath.row)"
-             
+            
             item.tableViewIdentificator = Identificator(identificatior: item.identificator, indexPath: indexPath.row)
             cell.configureForSelection(selectedItems: self.selectedItems, identificator: Identificator(identificatior: item.identificator, indexPath: indexPath.row), shouldShowSelection: shouldShowSelection)
             cell.isUserInteractionEnabled = true
@@ -128,26 +127,9 @@ public class GenericTableView: UITableView, UITableViewDataSource, UITableViewDe
         }
     }
     
-   public func reloadWithDeselectAll() {
+    public func reloadWithDeselectAll() {
         self.selectedItems.removeAll()
         self.reloadData()
-    }
-    
-    ///Returns all the classes that conform to a specific protocol.
-    private func allClasses<R>(
-      _ body: (UnsafeBufferPointer<AnyClass>) throws -> R
-    ) rethrows -> R {
-
-      var count: UInt32 = 0
-      let classListPtr = objc_copyClassList(&count)
-      defer {
-        free(UnsafeMutableRawPointer(classListPtr))
-      }
-      let classListBuffer = UnsafeBufferPointer(
-        start: classListPtr, count: Int(count)
-      )
-      
-      return try body(classListBuffer)
     }
     
     func getCorrectArray() -> [GenericModelType] {
@@ -163,7 +145,7 @@ public class GenericTableView: UITableView, UITableViewDataSource, UITableViewDe
     }
 }
 //MARK: - Extensions
-  extension SelectableTableViewRows {
+extension SelectableTableViewRows {
     //MARK: UpdateSelectedItemsArray
     func updateSelectedItemsWithNew(identifier: Identificator) {
         if self.selectedItems.count != 0 {
@@ -175,13 +157,13 @@ public class GenericTableView: UITableView, UITableViewDataSource, UITableViewDe
         } else {
             self.selectedItems.append(identifier)
         }
-//        reloadData()
+        //        reloadData()
     }
 }
 
 // MARK: - Helper Functions for Notifications
 @available(iOS 13.0.0, *)
-  extension GenericTableView {
+extension GenericTableView {
     //MARK: Reload Functions
     func reloadWithNewItemsOnTop<F>(newItems: [GenericModelType], secondaryFilter: F) where F: Filterable, F: Equatable{
         var trappedIndexPaths: [IndexPath] = []
@@ -205,7 +187,7 @@ public class GenericTableView: UITableView, UITableViewDataSource, UITableViewDe
         }
     }
     
-   public  func reloadDataWithDeletedItems() {
+    public  func reloadDataWithDeletedItems() {
         if self.selectedItems.count != 0 {
             
             var trappedIndexPaths: [IndexPath] = []
@@ -237,7 +219,7 @@ public class GenericTableView: UITableView, UITableViewDataSource, UITableViewDe
         }
     }
     
-     func reloadFromBottom<F>(newItems: [GenericModelType], secondaryFilter: F, scrollView: UIScrollView) where F: Equatable, F: Filterable{
+    func reloadFromBottom<F>(newItems: [GenericModelType], secondaryFilter: F, scrollView: UIScrollView) where F: Equatable, F: Filterable{
         
         var heightOfAllCells: CGFloat = 0
         guard newItems.count > 0 else { return }
@@ -260,13 +242,13 @@ public class GenericTableView: UITableView, UITableViewDataSource, UITableViewDe
                 secondaryFilter.isEqualTo(other: item.secondaryValueToFilterBy) ? item.secondaryValueToFilterBy as? F == secondaryFilter : false
             })
         }
-     
+        
         UIView.transition(with: self, duration: 0 , options: .curveEaseOut, animations: {self.reloadData()}, completion: nil)
         
     }
     
     //MARK : Primary Filter
-     func primaryFilterBy<P>(providedValue: P) where P:Equatable,P:Filterable {
+    func primaryFilterBy<P>(providedValue: P) where P:Equatable,P:Filterable {
         self.filteredItems = self.items.filter({ item in
             providedValue.isEqualTo(other: item.primaryValueToFilterBy) ? item.primaryValueToFilterBy as? P == providedValue : false
         })
@@ -274,7 +256,7 @@ public class GenericTableView: UITableView, UITableViewDataSource, UITableViewDe
     }
     
     //MARK : Secondary Filter
-     func secondaryFilterBY<FilterValue>(providedValue: FilterValue, primaryFilter: FilterValue, secondaryFilter: FilterValue) where FilterValue: Equatable, FilterValue: Filterable {
+    func secondaryFilterBY<FilterValue>(providedValue: FilterValue, primaryFilter: FilterValue, secondaryFilter: FilterValue) where FilterValue: Equatable, FilterValue: Filterable {
         
         let originalItems = self.items
         
