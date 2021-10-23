@@ -1,17 +1,26 @@
 #!/usr/bin/env bash
-mkdir GenericViews2.xcworkspace
-cd GenericViews2.xcworkspace
+GREEN='\033[1;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m'
+echo -e "${YELLOW}What should your new workspace be called?${NC}"
+read WORKSPACENAME
+echo -e "${GREEN}Creating workspace ${WORKSPACENAME}...${NC}"
+mkdir ${WORKSPACENAME}.xcworkspace
+cd ${WORKSPACENAME}.xcworkspace
 mkdir xcshareddata
 mkdir xcuserdata
 touch contents.xcworkspacedata
+echo -e "${YELLOW}Drag and drop your .xcodeproj or give me a path to its location...${NC}"
+read PATHTOPROJECT
+echo -e "${GREEN}Linking all projects...${NC}"
 echo $'<?xml version=\"1.0\" encoding=\"UTF-8\"?>' >> contents.xcworkspacedata
 echo "<Workspace" >> contents.xcworkspacedata
 echo $'   version = \"UTF-8\">' >> contents.xcworkspacedata
-if [[ $# -ne 0 ]] ; then 
+#if [[ $# -ne 0 ]] ; then
 echo $'   <FileRef' >> contents.xcworkspacedata
-echo "      location = \"group:$1\">" >> contents.xcworkspacedata
+echo "      location = \"group:${PATHTOPROJECT}\">" >> contents.xcworkspacedata #$1
 echo $'   </FileRef>' >> contents.xcworkspacedata
-fi
+#fi
 echo $'   <FileRef' >> contents.xcworkspacedata
 echo "      location = \"group:GenericViews.xcodeproj\">" >> contents.xcworkspacedata
 echo $'   </FileRef>' >> contents.xcworkspacedata
@@ -32,5 +41,8 @@ echo "</plist>" >> IDEWorkspaceChecks.plist
 cd ..
 cd xcuserdata
 mkdir $USER.xcuserdata
- 
-#../../Documents/BladiBla/BladiBla.xcodeproj
+echo -e "${GREEN}Done.${NC}"
+cd ..
+cd ..
+echo -e "${GREEN}You can find your project in: $PWD ${NC}"
+#~/Documents/BladiBla/BladiBla.xcodeproj
