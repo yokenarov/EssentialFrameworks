@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 public class GenericSectionWithItems {
-   private var sectionText = ""
+   var sectionText = ""
    public var sectionHeight: CGFloat = 40
    private var fontSize: CGFloat
    private var fontName: String
