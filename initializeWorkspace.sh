@@ -22,13 +22,13 @@ echo "      location = \"group:${PATHTOPROJECT}\">" >> contents.xcworkspacedata
 echo $'   </FileRef>' >> contents.xcworkspacedata
 
 echo $'   <FileRef' >> contents.xcworkspacedata
-echo "      location = \"group:GenericViews.xcodeproj\">" >> contents.xcworkspacedata
+echo "      location = \"group:GenericViews/GenericViews.xcodeproj\">" >> contents.xcworkspacedata
 echo $'   </FileRef>' >> contents.xcworkspacedata
 echo $'   <FileRef' >> contents.xcworkspacedata
-echo "      location = \"group:../Essentials/Essentials.xcodeproj\">" >> contents.xcworkspacedata
+echo "      location = \"group:Essentials/Essentials.xcodeproj\">" >> contents.xcworkspacedata
 echo $'   </FileRef>' >> contents.xcworkspacedata
 echo $'   <FileRef' >> contents.xcworkspacedata
-echo "      location = \"group:../NetworkingAPI/NetworkingAPI.xcodeproj\">" >> contents.xcworkspacedata
+echo "      location = \"group:NetworkingAPI/NetworkingAPI.xcodeproj\">" >> contents.xcworkspacedata
 echo $'   </FileRef>' >> contents.xcworkspacedata
 
 echo "</Workspace>" >> contents.xcworkspacedata
