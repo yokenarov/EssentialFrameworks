@@ -11,6 +11,10 @@
 		AA0AC2C027252D02001865D7 /* NetworkingAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0AC2B527252D02001865D7 /* NetworkingAPI.framework */; };
 		AA0AC2C527252D02001865D7 /* NetworkingAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0AC2C427252D02001865D7 /* NetworkingAPITests.swift */; };
 		AA0AC2C627252D02001865D7 /* NetworkingAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = AA0AC2B827252D02001865D7 /* NetworkingAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AA206D442725535F007323F8 /* HTTPMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA206D432725535F007323F8 /* HTTPMethods.swift */; };
+		AA2DE953272542C90010A2CF /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2DE952272542C90010A2CF /* Request.swift */; };
+		AA2DE962272548C50010A2CF /* APICallerInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2DE961272548C50010A2CF /* APICallerInterface.swift */; };
+		AAFBC9C52725D0F600450622 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFBC9C42725D0F600450622 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +33,10 @@
 		AA0AC2B927252D02001865D7 /* NetworkingAPI.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = NetworkingAPI.docc; sourceTree = "<group>"; };
 		AA0AC2BF27252D02001865D7 /* NetworkingAPITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkingAPITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA0AC2C427252D02001865D7 /* NetworkingAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingAPITests.swift; sourceTree = "<group>"; };
+		AA206D432725535F007323F8 /* HTTPMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethods.swift; sourceTree = "<group>"; };
+		AA2DE952272542C90010A2CF /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		AA2DE961272548C50010A2CF /* APICallerInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICallerInterface.swift; sourceTree = "<group>"; };
+		AAFBC9C42725D0F600450622 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +79,9 @@
 		AA0AC2B727252D02001865D7 /* NetworkingAPI */ = {
 			isa = PBXGroup;
 			children = (
+				AAFBC9C12725AC3D00450622 /* Extensions */,
+				AA206D4227255349007323F8 /* Enums */,
+				AA2DE951272542B60010A2CF /* Protocols */,
 				AA0AC2B827252D02001865D7 /* NetworkingAPI.h */,
 				AA0AC2B927252D02001865D7 /* NetworkingAPI.docc */,
 			);
@@ -83,6 +94,31 @@
 				AA0AC2C427252D02001865D7 /* NetworkingAPITests.swift */,
 			);
 			path = NetworkingAPITests;
+			sourceTree = "<group>";
+		};
+		AA206D4227255349007323F8 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				AA206D432725535F007323F8 /* HTTPMethods.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		AA2DE951272542B60010A2CF /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				AA2DE952272542C90010A2CF /* Request.swift */,
+				AA2DE961272548C50010A2CF /* APICallerInterface.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		AAFBC9C12725AC3D00450622 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AAFBC9C42725D0F600450622 /* Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,7 +230,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAFBC9C52725D0F600450622 /* Extensions.swift in Sources */,
+				AA206D442725535F007323F8 /* HTTPMethods.swift in Sources */,
+				AA2DE962272548C50010A2CF /* APICallerInterface.swift in Sources */,
 				AA0AC2BA27252D02001865D7 /* NetworkingAPI.docc in Sources */,
+				AA2DE953272542C90010A2CF /* Request.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,6 +436,7 @@
 		AA0AC2CD27252D02001865D7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -416,6 +457,7 @@
 		AA0AC2CE27252D02001865D7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
