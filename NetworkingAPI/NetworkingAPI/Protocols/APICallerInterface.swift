@@ -7,11 +7,12 @@
 
 import Foundation
 import Combine
-public protocol APICallerInterface {
-    func makeURLRequestPublisher(for request:  Request) -> AnyPublisher<Data, RequestError>  
+public protocol APICallerInterface { //URLSession.DataTaskPublisher.Output
+    func makeURLRequestPublisher(for request:  Request) -> AnyPublisher<ResponseAndData, RequestError>
     func parseDataFromRequest()
 }
  
 public enum RequestError: Error {
     case badRequest(error: String)
+    case ImproperBody(error: String)
 }

@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import Essentials
 
 public protocol Request {
     var scheme:     SchemesInterface        { get }
@@ -37,39 +38,62 @@ public protocol HeadersInterface  {}
 
 public extension Request {
     var fullUrl: String {
-        return scheme.scheme+baseURL.baseUrl
+        return "\(scheme.scheme)://\(baseURL.baseUrl)\(path.path)"
     }
+    
     var fullRequest: URLRequest {
-        var urlComponents = URLComponents()
-        urlComponents.scheme = scheme.scheme
-        urlComponents.host = baseURL.baseUrl
-        urlComponents.path = path.path
-        var bodyData: Data?
-        if let location = parameters?.params?.0, let params = parameters?.params?.1 {
-            var components = [URLQueryItem]()
-            switch location {
-            case .body:
-                guard method.method == "POST" || method.method == "PUT" else {
-                    print("You are trying encode a httpBody and your method is not POST or PUT. No body will be encoded.")
-                    break }
-                let encoder = JSONEncoder()
-                bodyData = try! encoder.encode(params)
-                
-            case .url:
-                params.forEach { key, value in
-                    let component = URLQueryItem(name: key, value: value)
-                    components.append(component)
+        get throws {
+            var urlComponents = URLComponents()
+            urlComponents.scheme = scheme.scheme
+            urlComponents.host = baseURL.baseUrl
+            urlComponents.path = path.path
+            var bodyData: Data?
+            
+            if let location = parameters?.params?.0, let params = parameters?.params?.1 {
+                var components = [URLQueryItem]()
+                switch location {
+                case .body:
+                    guard method.method == "POST" || method.method == "PUT" else {
+                        print("You are trying encode a httpBody and your method is not POST or PUT. Change HttpMethod to either POST or PUT.")
+                        print("""
+                          *** Error located in: \(GetSourceOfString().forProperty(file: #file, function: #function, line: #line)) ***
+                          Scheme: \(scheme.scheme)
+                          Host: \(baseURL.baseUrl)
+                          Path: \(path.path)
+                          Body: \(params)
+                          HTTPMethod: \(method.method)
+                          fullUrl: \(fullUrl)
+                          """)
+                        break }
+                    let encoder = JSONEncoder()
+                    do {
+                        bodyData = try encoder.encode(params)
+                    }catch {
+                        throw RequestError.ImproperBody(error: "Encoding of parameters failed. Expecting a [:] for parameters but \(params) was passed.")
+                    }
+                case .url:
+                    params.forEach { key, value in
+                        let component = URLQueryItem(name: key, value: value)
+                        components.append(component)
+                    }
+                    urlComponents.queryItems = components
                 }
-                urlComponents.queryItems = components
             }
+            guard let url = urlComponents.url else {
+                print("""
+                  Could not make a url. Check your custom implementation of the Request protocol.
+                  Scheme: \(scheme.scheme)
+                  Host: \(baseURL.baseUrl)
+                  Path: \(path.path)
+                  Body: \(bodyData ?? Data())
+                  HTTPMethod: \(method.method)
+                  """)
+                return  URLRequest(url: URL(string: fullUrl)!)
+            }
+            var request = URLRequest(url: url)
+            request.httpBody = bodyData ?? Data()
+            request.httpMethod = method.method
+            return request
         }
-        guard let url = urlComponents.url else {
-            print("Could not make a url. Check your custom implementation of the Request protocol.")
-            return  URLRequest(url: URL(string: fullUrl)!)
-        }
-        var request = URLRequest(url: url)
-        request.httpBody = bodyData ?? Data()
-        request.httpMethod = method.method 
-        return request
     }
 }
