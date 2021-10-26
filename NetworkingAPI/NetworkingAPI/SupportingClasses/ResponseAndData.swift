@@ -14,10 +14,17 @@ public struct ResponseAndData: ResponseAndDataInterface {
 public var statusCode: Int?
 public var url: String?
 public var data: Data
-public var response: URLResponse
+    public var response: URLResponse {
+        didSet{
+            guard let unwrappedResponse = response as? HTTPURLResponse else {
+                print("Could not cast response as HTTPURLResponse.")
+                return }
+            self.statusCode = unwrappedResponse.statusCode
+            self.url = unwrappedResponse.url?.absoluteString
+        }
+    }
 public init(response: URLResponse, data: Data) {  
          guard let response = response as? HTTPURLResponse else {
-             print("Could not cast response as HTTPURLResponse.")
              self.data = Data()
              self.response = URLResponse()
              return }
@@ -33,7 +40,7 @@ public init(response: URLResponse, data: Data) {
               \(GetSourceOfString().forNetworkCall(file: file, function: function, line: line)) \n\(validateStatusCode) \(statusCode ?? 0) - \(url ?? "")
               """)
     }
-    
+   
     private var validateStatusCode: String {
         switch statusCode ?? 0 {
         case 200...300:

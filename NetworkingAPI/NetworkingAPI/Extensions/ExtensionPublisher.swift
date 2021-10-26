@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-extension Publisher where Output == ResponseAndData {
+extension Publisher where Output == ResponseAndDataInterface {
     /**
      An operator that prints a predifined status of the incoming response.
      
@@ -16,34 +16,33 @@ extension Publisher where Output == ResponseAndData {
             - file:  points to the file in which the function is called. It would be enough to provide #file as a pameter here.
             - function:  points to the name of the function. It would be enough to provide #function as a pameter here.
             - lline:  points to the line in the file in which the function is called. It would be enough to provide #line as a pameter here.
-        - Returns:
+            - ofItem: Consider using this if you have a custom implementation of the ResponseAndDataInteface and you need to do something extra with your custom item.
     */
-    public func printNetworkResponseInfo(file: String, function: String, line: Int,_ ofItem: ((Output) -> Void)? = nil)  ->  Publishers.Map<Self, Output> {
+    public func printNetworkResponseInfo(
+        file: String,
+        function: String,
+        line: Int,
+        _ ofItem: ((Output) -> Void)? = nil)  ->  Publishers.Map<Self, Output> {
         map { item in
+            ofItem?(item)
             item.printResponseStatus(file: file, function: function, line: line)
             return  item
         }
     }
-
+    
+   
 }
-//extension Publisher where Output == ResponseAndDataInterface.Type {
-//    var allClassesArray: [ResponseAndDataInterface.Type] {
-//        get {
-//            let object = NSObject()
-//            return  object.allClasses { $0.compactMap { $0 as? ResponseAndDataInterface.Type } }
-//        }
-//    }
-//    public func mapResponseAndDataInterfaceToSpecifcType(currentType: ResponseAndDataInterface.Type) ->  Publishers.Map<Self, Output> {
-//        map { genericResponseItem in
-//            var transformedItem: ResponseAndDataInterface.Type?
-//            for item in allClassesArray {
-//                if currentType == item {
-//                    transformedItem = currentType
-//                    return transformedItem!
-//                }
-//            }
-//            return transformedItem!
-//
-//        }
-//    }
-//}
+extension Publisher where Output == ResponseAndDataInterface {
+    public func mapToCustomType( _ ofItem: ((Output) -> ResponseAndDataInterface)? = nil) -> Publishers.TryMap<Self, Output> {
+        tryMap { incomingResponse ->  ResponseAndDataInterface in
+            if  incomingResponse is ResponseAndData {
+                return incomingResponse.asResponseAndData
+            }else {
+                let incomingValue = ofItem?(incomingResponse)
+                return incomingValue!.asCustomType(response: incomingValue!.response, data: incomingValue!.data)
+            }
+        }
+    }
+}
+ 
+ 

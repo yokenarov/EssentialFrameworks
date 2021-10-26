@@ -17,8 +17,9 @@ extension APICallerInterface {
 
         - Returns:
     */
-    public func makeURLRequestPublisher(for request:  Request) -> AnyPublisher<ResponseAndData, NetworkingAPIError> {
-       var unwrappedRequest: URLRequest?
+    public func makeURLRequestPublisher(for request:  Request, with providedResponseAndData: ResponseAndDataInterface? = ResponseAndData(response: URLResponse(), data: Data())) -> AnyPublisher<ResponseAndDataInterface, NetworkingAPIError> {
+        var mutableResponseAndData = providedResponseAndData
+        var unwrappedRequest: URLRequest?
        
         do { try unwrappedRequest = request.fullRequest } catch {
             print(error)
@@ -26,9 +27,11 @@ extension APICallerInterface {
         }
        
        let publisher = URLSession.shared.dataTaskPublisher(for: unwrappedRequest!)
-            .tryMap() { incomingURLResponse -> ResponseAndData in
-                let responseAndData = ResponseAndData(response: incomingURLResponse.response, data: incomingURLResponse.data)
-                return responseAndData
+            .tryMap() { incomingURLResponse -> ResponseAndDataInterface in
+                    mutableResponseAndData?.response = incomingURLResponse.response
+                    mutableResponseAndData?.data = incomingURLResponse.data
+                    return mutableResponseAndData!
+                 
            } 
            .mapError({ error -> NetworkingAPIError in
                return NetworkingAPIError.badRequest(error: error.localizedDescription)
