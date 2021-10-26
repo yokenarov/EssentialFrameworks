@@ -7,7 +7,9 @@
 
 import Foundation
 
-enum NetworkingAPIError: Error {
-case jsonParsingError(error: Error)
-    case badUrl
+public enum NetworkingAPIError: Error {
+    case jsonEncodingError(_ error: String)
+    case badBody(_ error: String)
+    case badRequest(error: String)
+    
 }

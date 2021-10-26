@@ -8,7 +8,10 @@
 import Foundation
 import Combine
 import Essentials
-
+/**
+ This protocol defince a base line interface for constructing a URLResponse, that can be passed to the APICallerInterface functions. You will need to provide your custom implementation of this interface for your network layer APIs.
+ 
+*/
 public protocol Request {
     var scheme:     SchemesInterface        { get }
     var baseURL:    BaseUrlInterface        { get }
@@ -54,22 +57,12 @@ public extension Request {
                 switch location {
                 case .body:
                     guard method.method == "POST" || method.method == "PUT" else {
-                        print("You are trying encode a httpBody and your method is not POST or PUT. Change HttpMethod to either POST or PUT.")
-                        print("""
-                          *** Error located in: \(GetSourceOfString().forProperty(file: #file, function: #function, line: #line)) ***
-                          Scheme: \(scheme.scheme)
-                          Host: \(baseURL.baseUrl)
-                          Path: \(path.path)
-                          Body: \(params)
-                          HTTPMethod: \(method.method)
-                          fullUrl: \(fullUrl)
-                          """)
-                        break }
+                        throw NetworkingAPIError.badBody("❌ You are trying encode a httpBody and your method is not POST or PUT. Change HttpMethod to either POST or PUT. Error located in: \(GetSourceOfString().forProperty(file: #file, function: #function, line: #line))")}
                     let encoder = JSONEncoder()
                     do {
                         bodyData = try encoder.encode(params)
                     }catch {
-                        throw RequestError.ImproperBody(error: "Encoding of parameters failed. Expecting a [:] for parameters but \(params) was passed.")
+                        throw NetworkingAPIError.jsonEncodingError("❌ Encoding of parameters failed. Expecting a codable object for parameters, but \(params) was passed.")
                     }
                 case .url:
                     params.forEach { key, value in
@@ -81,7 +74,7 @@ public extension Request {
             }
             guard let url = urlComponents.url else {
                 print("""
-                  Could not make a url. Check your custom implementation of the Request protocol.
+                  ❌ Could not make a url. Check your custom implementation of the Request protocol.
                   Scheme: \(scheme.scheme)
                   Host: \(baseURL.baseUrl)
                   Path: \(path.path)

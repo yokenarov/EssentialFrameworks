@@ -14,8 +14,8 @@
             filePath = "NetworkingAPI/NetworkingAPI/Extensions/ExtensionPublisher.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "14"
-            endingLineNumber = "14"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
             landmarkName = "printNetworkResponseInfo(file:function:line:_:)"
             landmarkType = "7">
          </BreakpointContent>

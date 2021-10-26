@@ -7,14 +7,21 @@
 
 import Foundation
 
+/**
+This is a helper struct meant to encapsulate the incoming response and data from a networkcall and print some usefull information about the status of the network call itself. 
+*/
 public struct ResponseAndData: ResponseAndDataInterface {
 public var statusCode: Int?
 public var url: String?
-public var data: Data?
+public var data: Data
+public var response: URLResponse
 public init(response: URLResponse, data: Data) {  
          guard let response = response as? HTTPURLResponse else {
              print("Could not cast response as HTTPURLResponse.")
+             self.data = Data()
+             self.response = URLResponse()
              return }
+    self.response = response
         self.statusCode = response.statusCode
         self.url = response.url?.absoluteString
         self.data = data

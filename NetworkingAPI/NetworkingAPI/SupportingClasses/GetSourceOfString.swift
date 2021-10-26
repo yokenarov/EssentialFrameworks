@@ -6,7 +6,9 @@
 //
 
 import Foundation
-
+/**
+ This is a helper struct meant to print out some usefull information about a function or a property. 
+*/
 public struct GetSourceOfString {
       public func forNetworkCall(file: String, function: String, line: Int) -> String {
         var caller = ""

@@ -7,5 +7,8 @@
 
 import Foundation
 public protocol ResponseAndDataInterface {
+    init (response: URLResponse, data: Data)
+     var response: URLResponse { get set }
+     var data: Data { get set }
      func printResponseStatus(file: String, function: String, line: Int)
 }

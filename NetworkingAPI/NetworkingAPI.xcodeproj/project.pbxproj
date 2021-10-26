@@ -11,6 +11,7 @@
 		AA0AC2C027252D02001865D7 /* NetworkingAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0AC2B527252D02001865D7 /* NetworkingAPI.framework */; };
 		AA0AC2C527252D02001865D7 /* NetworkingAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0AC2C427252D02001865D7 /* NetworkingAPITests.swift */; };
 		AA0AC2C627252D02001865D7 /* NetworkingAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = AA0AC2B827252D02001865D7 /* NetworkingAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AA19CBCC2727F00000CA38E8 /* ExtensionNSObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA19CBCB2727F00000CA38E8 /* ExtensionNSObject.swift */; };
 		AA206D442725535F007323F8 /* HTTPMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA206D432725535F007323F8 /* HTTPMethods.swift */; };
 		AA2DE953272542C90010A2CF /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2DE952272542C90010A2CF /* Request.swift */; };
 		AA2DE962272548C50010A2CF /* APICallerInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2DE961272548C50010A2CF /* APICallerInterface.swift */; };
@@ -19,8 +20,7 @@
 		AA325DB22726EFAC0077F4D0 /* ResponseAndData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA325DB12726EFAC0077F4D0 /* ResponseAndData.swift */; };
 		AA325DB42726FFFF0077F4D0 /* ExtensionPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA325DB32726FFFF0077F4D0 /* ExtensionPublisher.swift */; };
 		AA325DB627271CA00077F4D0 /* ResponseAndDataInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA325DB527271CA00077F4D0 /* ResponseAndDataInterface.swift */; };
-		AA325DB827271CC10077F4D0 /* ExtensionResponseAndDataInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA325DB727271CC10077F4D0 /* ExtensionResponseAndDataInterface.swift */; };
-		AAFBC9C52725D0F600450622 /* ExtensionDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFBC9C42725D0F600450622 /* ExtensionDictionary.swift */; };
+		AAC134C02727CCFC00EBABA1 /* ExtensionApiCallerInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC134BF2727CCFC00EBABA1 /* ExtensionApiCallerInterface.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +39,7 @@
 		AA0AC2B927252D02001865D7 /* NetworkingAPI.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = NetworkingAPI.docc; sourceTree = "<group>"; };
 		AA0AC2BF27252D02001865D7 /* NetworkingAPITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkingAPITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA0AC2C427252D02001865D7 /* NetworkingAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingAPITests.swift; sourceTree = "<group>"; };
+		AA19CBCB2727F00000CA38E8 /* ExtensionNSObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionNSObject.swift; sourceTree = "<group>"; };
 		AA206D432725535F007323F8 /* HTTPMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethods.swift; sourceTree = "<group>"; };
 		AA2DE952272542C90010A2CF /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		AA2DE961272548C50010A2CF /* APICallerInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICallerInterface.swift; sourceTree = "<group>"; };
@@ -48,8 +49,7 @@
 		AA325DB12726EFAC0077F4D0 /* ResponseAndData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseAndData.swift; sourceTree = "<group>"; };
 		AA325DB32726FFFF0077F4D0 /* ExtensionPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionPublisher.swift; sourceTree = "<group>"; };
 		AA325DB527271CA00077F4D0 /* ResponseAndDataInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseAndDataInterface.swift; sourceTree = "<group>"; };
-		AA325DB727271CC10077F4D0 /* ExtensionResponseAndDataInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionResponseAndDataInterface.swift; sourceTree = "<group>"; };
-		AAFBC9C42725D0F600450622 /* ExtensionDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDictionary.swift; sourceTree = "<group>"; };
+		AAC134BF2727CCFC00EBABA1 /* ExtensionApiCallerInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionApiCallerInterface.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,9 +158,9 @@
 		AAFBC9C12725AC3D00450622 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				AAFBC9C42725D0F600450622 /* ExtensionDictionary.swift */,
 				AA325DB32726FFFF0077F4D0 /* ExtensionPublisher.swift */,
-				AA325DB727271CC10077F4D0 /* ExtensionResponseAndDataInterface.swift */,
+				AAC134BF2727CCFC00EBABA1 /* ExtensionApiCallerInterface.swift */,
+				AA19CBCB2727F00000CA38E8 /* ExtensionNSObject.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -275,14 +275,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA325DB627271CA00077F4D0 /* ResponseAndDataInterface.swift in Sources */,
-				AAFBC9C52725D0F600450622 /* ExtensionDictionary.swift in Sources */,
-				AA325DB827271CC10077F4D0 /* ExtensionResponseAndDataInterface.swift in Sources */,
 				AA206D442725535F007323F8 /* HTTPMethods.swift in Sources */,
 				AA2DE962272548C50010A2CF /* APICallerInterface.swift in Sources */,
 				AA0AC2BA27252D02001865D7 /* NetworkingAPI.docc in Sources */,
 				AA325DB22726EFAC0077F4D0 /* ResponseAndData.swift in Sources */,
 				AA2DE953272542C90010A2CF /* Request.swift in Sources */,
 				AA325DB02726E6BA0077F4D0 /* GetSourceOfString.swift in Sources */,
+				AA19CBCC2727F00000CA38E8 /* ExtensionNSObject.swift in Sources */,
+				AAC134C02727CCFC00EBABA1 /* ExtensionApiCallerInterface.swift in Sources */,
 				AA325DA52726DE850077F4D0 /* NetworkingApiError.swift in Sources */,
 				AA325DB42726FFFF0077F4D0 /* ExtensionPublisher.swift in Sources */,
 			);

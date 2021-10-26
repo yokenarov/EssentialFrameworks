@@ -7,12 +7,9 @@
 
 import Foundation
 import Combine
-public protocol APICallerInterface { //URLSession.DataTaskPublisher.Output
-    func makeURLRequestPublisher(for request:  Request) -> AnyPublisher<ResponseAndData, RequestError>
-    func parseDataFromRequest()
+/**
+ This protocol provides all the functions with which you can make network requests. Your custom Api Caller will have to inherit from this protocol in order to use the suite of functions it provides.
+*/
+public protocol APICallerInterface {
 }
  
-public enum RequestError: Error {
-    case badRequest(error: String)
-    case ImproperBody(error: String)
-}
