@@ -21,6 +21,7 @@
 		AA325DB42726FFFF0077F4D0 /* ExtensionPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA325DB32726FFFF0077F4D0 /* ExtensionPublisher.swift */; };
 		AA325DB627271CA00077F4D0 /* ResponseAndDataInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA325DB527271CA00077F4D0 /* ResponseAndDataInterface.swift */; };
 		AA7A36CA27282C0F00EF9CBF /* ExtensionResponseAndData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7A36C927282C0F00EF9CBF /* ExtensionResponseAndData.swift */; };
+		AA7A36CF2728897600EF9CBF /* ExtensionHeadersInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7A36CE2728897600EF9CBF /* ExtensionHeadersInterface.swift */; };
 		AAC134C02727CCFC00EBABA1 /* ExtensionApiCallerInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC134BF2727CCFC00EBABA1 /* ExtensionApiCallerInterface.swift */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,7 @@
 		AA325DB32726FFFF0077F4D0 /* ExtensionPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionPublisher.swift; sourceTree = "<group>"; };
 		AA325DB527271CA00077F4D0 /* ResponseAndDataInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseAndDataInterface.swift; sourceTree = "<group>"; };
 		AA7A36C927282C0F00EF9CBF /* ExtensionResponseAndData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionResponseAndData.swift; sourceTree = "<group>"; };
+		AA7A36CE2728897600EF9CBF /* ExtensionHeadersInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionHeadersInterface.swift; sourceTree = "<group>"; };
 		AAC134BF2727CCFC00EBABA1 /* ExtensionApiCallerInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionApiCallerInterface.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -164,6 +166,7 @@
 				AAC134BF2727CCFC00EBABA1 /* ExtensionApiCallerInterface.swift */,
 				AA19CBCB2727F00000CA38E8 /* ExtensionNSObject.swift */,
 				AA7A36C927282C0F00EF9CBF /* ExtensionResponseAndData.swift */,
+				AA7A36CE2728897600EF9CBF /* ExtensionHeadersInterface.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 				AA19CBCC2727F00000CA38E8 /* ExtensionNSObject.swift in Sources */,
 				AAC134C02727CCFC00EBABA1 /* ExtensionApiCallerInterface.swift in Sources */,
 				AA325DA52726DE850077F4D0 /* NetworkingApiError.swift in Sources */,
+				AA7A36CF2728897600EF9CBF /* ExtensionHeadersInterface.swift in Sources */,
 				AA325DB42726FFFF0077F4D0 /* ExtensionPublisher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

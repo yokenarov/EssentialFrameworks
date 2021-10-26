@@ -11,14 +11,14 @@ import Essentials
 /**
  This protocol defince a base line interface for constructing a URLResponse, that can be passed to the APICallerInterface functions. You will need to provide your custom implementation of this interface for your network layer APIs.
  
-*/
+ */
 public protocol Request {
     var scheme:     SchemesInterface        { get }
     var baseURL:    BaseUrlInterface        { get }
     var path:       PathInterface           { get }
     var method:     MethodsInterface        { get }
     var parameters: RequestParamsInterface? { get }
-    var headers:    HeadersInterface?       { get }
+    var headers:    HeadersInterface        { get }
     var dataType:   DataType                { get }
 }
 public protocol SchemesInterface {
@@ -36,7 +36,10 @@ public protocol MethodsInterface {
 public protocol RequestParamsInterface {
     var params: (ParameterLocation, [String: String])? { get }
 }
-public protocol HeadersInterface  {}
+public protocol HeadersInterface  {
+    var defaultHeaders: [String: String] { get }
+    var headers: [String: String] { get }
+}
 
 
 public extension Request {
@@ -84,8 +87,9 @@ public extension Request {
                 return  URLRequest(url: URL(string: fullUrl)!)
             }
             var request = URLRequest(url: url)
-            request.httpBody = bodyData ?? Data()
             request.httpMethod = method.method
+            request.allHTTPHeaderFields = headers.headers
+            request.httpBody = bodyData ?? Data()
             return request
         }
     }
