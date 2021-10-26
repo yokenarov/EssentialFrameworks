@@ -9,7 +9,6 @@ import Foundation
 public extension NSObject {
     /**
      A function that returns all the classes in memory. 
-      
     */
     func allClasses<R>(_ body: (UnsafeBufferPointer<AnyClass>) throws -> R) rethrows -> R {
         var count: UInt32 = 0

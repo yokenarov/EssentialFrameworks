@@ -21,21 +21,39 @@ public protocol Request {
     var headers:    HeadersInterface        { get }
     var dataType:   DataType                { get }
 }
+/**
+ This protocol defince a base line interface for providing the scheme of your URL. (http / https).
+ */
 public protocol SchemesInterface {
     var scheme: String  { get }
 }
+/**
+ This protocol defince a base line interface for providing the baseURL.
+ */
 public protocol BaseUrlInterface {
     var baseUrl: String  { get }
 }
+/**
+ This protocol defince a base line interface for providing the path of your URL.
+ */
 public protocol PathInterface  {
     var path: String { get }
 }
+/**
+ This protocol defince a base line interface for providing the httpMethod of your URL.
+ */
 public protocol MethodsInterface {
     var method: String { get }
 }
+/**
+ This protocol defince a base line interface for providing the parameters of your request. Note that you can encode them directly in the url or in the body. For this you will have to provide a ParameterLocation as the first item in the tuple.
+ */
 public protocol RequestParamsInterface {
     var params: (ParameterLocation, [String: String])? { get }
 }
+/**
+ This protocol defince a base line interface for providing the headers for the request.
+ */
 public protocol HeadersInterface  {
     var defaultHeaders: [String: String] { get }
     var headers: [String: String] { get }

@@ -32,7 +32,15 @@ extension Publisher where Output == ResponseAndDataInterface {
     
    
 }
+
+
 extension Publisher where Output == ResponseAndDataInterface {
+    /**
+     An operator that changes the default type of ResponseAndData object to a custom implementation that you have provided. A trailing clousure is provided for you where you can cast the incoming object to your own custom type.
+     
+        - Parameters:
+            - ofItem:  Points to the item from the upstream publisher. Perform any typecasting in this clousure.
+    */
     public func mapToCustomType( _ ofItem: ((Output) -> ResponseAndDataInterface)? = nil) -> Publishers.TryMap<Self, Output> {
         tryMap { incomingResponse ->  ResponseAndDataInterface in
             if  incomingResponse is ResponseAndData {
