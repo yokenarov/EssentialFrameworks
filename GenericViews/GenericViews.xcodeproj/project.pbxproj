@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		AA5A263527248CD500330A61 /* SupportingClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5A263427248CD500330A61 /* SupportingClasses.swift */; };
-		AA9750BC26F8A0C400122F49 /* Essentials.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA9750BB26F8A0C400122F49 /* Essentials.framework */; };
-		AA9750BD26F8A0C400122F49 /* Essentials.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AA9750BB26F8A0C400122F49 /* Essentials.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AA7A36D127292DDA00EF9CBF /* Essentials.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA7A36D027292DDA00EF9CBF /* Essentials.framework */; };
+		AA7A36D227292DDA00EF9CBF /* Essentials.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AA7A36D027292DDA00EF9CBF /* Essentials.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AAE5B0D526EE440C008E472D /* GenericTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5B0D426EE440C008E472D /* GenericTableView.swift */; };
 		AAE5B0D926EE4451008E472D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5B0D826EE4451008E472D /* Extensions.swift */; };
 		AAE5B0E026EE471E008E472D /* GenericProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5B0DF26EE471E008E472D /* GenericProtocols.swift */; };
@@ -29,13 +29,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		AA9750BE26F8A0C400122F49 /* Embed Frameworks */ = {
+		AA7A36D327292DDA00EF9CBF /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				AA9750BD26F8A0C400122F49 /* Essentials.framework in Embed Frameworks */,
+				AA7A36D227292DDA00EF9CBF /* Essentials.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -44,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		AA5A263427248CD500330A61 /* SupportingClasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportingClasses.swift; sourceTree = "<group>"; };
+		AA7A36D027292DDA00EF9CBF /* Essentials.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Essentials.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA9750BB26F8A0C400122F49 /* Essentials.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Essentials.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAE5B0D426EE440C008E472D /* GenericTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericTableView.swift; sourceTree = "<group>"; };
 		AAE5B0D826EE4451008E472D /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -61,7 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA9750BC26F8A0C400122F49 /* Essentials.framework in Frameworks */,
+				AA7A36D127292DDA00EF9CBF /* Essentials.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +80,7 @@
 		AA9750BA26F8A0C400122F49 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AA7A36D027292DDA00EF9CBF /* Essentials.framework */,
 				AA9750BB26F8A0C400122F49 /* Essentials.framework */,
 			);
 			name = Frameworks;
@@ -179,7 +181,7 @@
 				AAEFFF7C26EE42C1006BE7B7 /* Sources */,
 				AAEFFF7D26EE42C1006BE7B7 /* Frameworks */,
 				AAEFFF7E26EE42C1006BE7B7 /* Resources */,
-				AA9750BE26F8A0C400122F49 /* Embed Frameworks */,
+				AA7A36D327292DDA00EF9CBF /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

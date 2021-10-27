@@ -11,5 +11,7 @@ public enum NetworkingAPIError: Error {
     case jsonEncodingError(_ error: String)
     case badBody(_ error: String)
     case badRequest(error: String)
-    
+    case networkError(error: String)
+    case nilData(error: String)
+    case nilResponse(error: String)
 }

@@ -13,6 +13,9 @@ import UIKit
 #if canImport(Essentials)
 import Essentials
 #endif
+#if canImport(NetworkingAPI)
+import NetworkingAPI
+#endif
 /**
  This is a reusable tableview with a number of functionalities that can work with any type that conforms to the GenericModelType.
  */

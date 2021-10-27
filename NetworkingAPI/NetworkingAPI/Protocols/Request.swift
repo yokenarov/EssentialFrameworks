@@ -7,7 +7,12 @@
 
 import Foundation
 import Combine
+#if canImport(Essentials)
 import Essentials
+#endif
+#if canImport(GenericViews)
+import GenericViews
+#endif
 /**
  This protocol defince a base line interface for constructing a URLResponse, that can be passed to the APICallerInterface functions. You will need to provide your custom implementation of this interface for your network layer APIs.
  

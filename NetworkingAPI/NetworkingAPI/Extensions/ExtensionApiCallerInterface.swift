@@ -14,10 +14,9 @@ extension APICallerInterface {
 
         - Parameters:
             - request: This parrameter accepts a type that conforms to the protocl Request. You will have to provide your own custom implementation of that type. See more on the Request protocol definition.
-
-        - Returns:
+ 
     */
-    public func makeURLRequestPublisher(for request: Request,
+    public func makeURLRequesWithPublisher(for request: Request,
                                         with providedResponseAndData: ResponseAndDataInterface? = ResponseAndData(response: URLResponse(), data: Data())) -> AnyPublisher<ResponseAndDataInterface, NetworkingAPIError> {
         var mutableResponseAndData = providedResponseAndData
         var unwrappedRequest: URLRequest?
@@ -39,6 +38,37 @@ extension APICallerInterface {
            .eraseToAnyPublisher()
        return publisher
     }
-    
-    //TODO: Add an alternative with an escaping clousure in case it is used on projects with lower minimum OS version than 13.0
+    /**
+     A function that returns starts a URLSessionDataTask with a custom object, conforiming to the Request protocol and returns an escaping closure with custom output type with the response and the raw data from the response.
+
+        - Parameters:
+            - request: This parrameter accepts a type that conforms to the protocl Request. You will have to provide your own custom implementation of that type. See more on the Request protocol definition.
+ 
+    */
+   public func makeURLRequestWithClosure(for request: Request,
+                                   with providedResponseAndData: ResponseAndDataInterface? = ResponseAndData(response: URLResponse(), data: Data()),
+                                   withResponseAndData completion: @escaping (ResponseAndDataInterface) -> Void) {
+        var mutableResponseAndData = providedResponseAndData
+        var unwrappedRequest: URLRequest?
+        do { try unwrappedRequest = request.fullRequest } catch { print(error) }
+        URLSession.shared.dataTask(with: unwrappedRequest!) { data, response, error in
+            guard error == nil else {
+                print(NetworkingAPIError.networkError(error: "❌ A networking error occured \(error?.localizedDescription ?? "No error received"). Default Data() and URLResponse() will be returned."))
+                DispatchQueue.main.async {
+                completion(mutableResponseAndData!)
+                }
+                return
+            }
+            if data == nil {
+                print(NetworkingAPIError.nilData(error: "❌ The incoming data is nil. A default Data() will be returned"))
+            }else if response == nil {
+                print(NetworkingAPIError.nilResponse(error: "❌ The incoming response is nil. A default URLResponse() will be returned"))
+            }
+            mutableResponseAndData?.response = response ?? URLResponse()
+            mutableResponseAndData?.data = data ?? Data ()
+            DispatchQueue.main.async {
+            completion(mutableResponseAndData!)
+            }
+        }.resume()
+    }
 }
