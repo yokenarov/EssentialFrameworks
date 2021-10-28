@@ -1,7 +1,7 @@
 # EssentialsFramework
 This Repo contains three standalone frameworks meant for any general purpose coding along with some setup/helper scripts.
 
-There are two ways to get started. 
+There are two ways to get started.  
 
 1. Assuming you are trying to test out the Example project run the assembleWorkspace script. 
 Open terminal and cd into the cloned project directory then run:
