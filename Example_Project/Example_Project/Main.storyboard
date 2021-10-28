@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QB9-u1-cdd">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -91,11 +92,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="zeX-Lw-2bT"/>
                     <connections>
-                        <outlet property="ClosureButton" destination="tiV-rJ-XdH" id="imP-Pf-5P9"/>
-                        <outlet property="Container" destination="IN0-yl-75K" id="eoI-9i-4Cr"/>
-                        <outlet property="DelegateButton" destination="MGl-Ll-wbO" id="QZ1-bU-cnP"/>
-                        <outlet property="ExampleTitleLabel" destination="eIK-d1-oUI" id="vW8-3G-NzJ"/>
-                        <outlet property="PublisherButton" destination="1N8-Ql-hbK" id="Ode-gu-9AH"/>
+                        <outlet property="closureButton" destination="tiV-rJ-XdH" id="Jqi-IQ-h34"/>
+                        <outlet property="container" destination="IN0-yl-75K" id="XVd-uc-f7X"/>
+                        <outlet property="delegateButton" destination="MGl-Ll-wbO" id="AVq-dm-5Mf"/>
+                        <outlet property="exampleTitleLabel" destination="eIK-d1-oUI" id="AmR-Xn-zuc"/>
+                        <outlet property="publisherButton" destination="1N8-Ql-hbK" id="pgO-3z-FIN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -11,6 +11,5 @@ public struct RequestParams: RequestParamsInterface {
     init(location: ParameterLocation, params: [String: String]) {
         self.params = (location, params)
     }
-   public var params: (ParameterLocation, [String : String])? 
-    
+   public var params: (ParameterLocation, [String: String])?
 }

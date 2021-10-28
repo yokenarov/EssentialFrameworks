@@ -1,18 +1,14 @@
-//
 //  ViewController.swift
 //  BladiBla
 //
 //  Created by Jordan Kenarov on 23.10.21.
 //
-
 import UIKit
 import Combine
 import GenericViews
 import NetworkingAPI
 import Essentials
 class ExampleViewController: UIViewController, CancellableBagProvider, DataTaskWithDelegate {
-    
-    
     @IBOutlet weak var tableViewContainer: UIView!
     var cancellableBag = Set<AnyCancellable>()
     var tableView: GenericTableView!
@@ -28,44 +24,44 @@ class ExampleViewController: UIViewController, CancellableBagProvider, DataTaskW
             loadTranslationsWithDelegate()
         }
     }
-    
     override func viewDidLayoutSubviews() {
         guard self.tableViewContainer != nil else { return }
         guard self.tableView == nil else { return }
-        let genericItem  = GenericSectionWithItems(sectionLableBuilder: SectionLableBuilder(sectiontext: "", fontSize: 20, sectionHeight: 50, ""), items: [])
+        let genericItem  = GenericSectionWithItems(
+            sectionLableBuilder: SectionLableBuilder(sectiontext: "", fontSize: 20, sectionHeight: 50, ""),
+            items: [])
         items.append(genericItem)
-        tableView = GenericTableView(frame: tableViewContainer.bounds, items: items, tableViewStyle: .plain, isAllSelected: true)
+        tableView = GenericTableView(
+            frame: tableViewContainer.bounds,
+            items: items, tableViewStyle: .plain,
+            isAllSelected: true)
         tableView.cellForRowAt.sink(receiveValue: { item, cell in
-            let iteme = item as! Blue
-            let celle = cell as! BlueTableViewCell
-            celle.label.text = iteme.title
-            
+            guard let item = item as? Blue else { return }
+            guard let cell = cell as? BlueTableViewCell else { return }
+            cell.label.text = item.title
         }).store(in: &cancellableBag)
-        tableView.didSelectRowAt.sink(receiveValue: { item in
+        tableView.didSelectRowAt.sink(receiveValue: { _ in
         }).store(in: &cancellableBag)
-        
         self.tableViewContainer.addSubview(tableView)
     }
-    
-    //MARK: - ClosureMethod
+    // MARK: - ClosureMethod
     func loadTranslationsWithClosure() {
-        ApiCaller.shared.makeURLRequestWithClosure(for: ApiRequests.createPost(location: .body, params: ["title":"foo", "body":"bar", "userId":"1"]), with: Comment.self) { decodedResponse, responseAndData in
+        ApiCaller.shared.makeURLRequestWithClosure(
+            for: ApiRequests.createPost(location: .body, params: ["title": "foo", "body": "bar", "userId": "1"]),
+            with: Comment.self) { decodedResponse, responseAndData in
             responseAndData?.printResponseStatus(file: #file, function: #function, line: #line)
             guard decodedResponse != nil else {
                 print(NetworkingAPIError.nilData)
                 return
             }
-            
             let blue = Blue()
             blue.title = decodedResponse?.title ?? ""
             self.items[0].items.append(blue)
-            
             self.tableView.reloadData()
         }
     }
-    //MARK: - PublisherMethod
+    // MARK: - PublisherMethod
     func loadTranslationsWithPublisher() {
-        
         ApiCaller.shared.makeURLRequesWithPublisher(for: ApiRequests.users, cancellableBagProvider: self)
             .printNetworkResponseInfo(file: #file, function: #function, line: #line)
             .tryMap(\.data)
@@ -74,12 +70,12 @@ class ExampleViewController: UIViewController, CancellableBagProvider, DataTaskW
                 return !item.isEmpty
             })
             .decode(type: Array<User>.self, decoder: JSONDecoder())
-            .sink{ [unowned self] completion in
+            .sink { [unowned self] completion in
                 switch completion {
                 case .finished:
                     self.tableView.reloadData()
                 case .failure(let error):
-                    AlertPresenter.shared.presentAlert(vc: self, errorMessage: error.localizedDescription)
+                    AlertPresenter.shared.presentAlert(viewController: self, errorMessage: error.localizedDescription)
                     print(error)
                 }
             }
@@ -91,21 +87,21 @@ class ExampleViewController: UIViewController, CancellableBagProvider, DataTaskW
         }
     }.store(in: &cancellableBag)
     }
-    //MARK: - DelegateMethod
+    // MARK: - DelegateMethod
     func loadTranslationsWithDelegate() {
-        ApiCaller.shared.makeURLRequestWithDelegate(for: ApiRequests.comments(location: .url, params: ["postId":"1"]), with: Array<Post>.self, dataTaskDelegateImplementor: self)
+        ApiCaller.shared.makeURLRequestWithDelegate(
+            for: ApiRequests.comments(location: .url, params: ["postId": "1"]),
+            with: Array<Post>.self, dataTaskDelegateImplementor: self)
     }
-    
     func resultFromURLRequestWithDelegate(model: Codable?, responseAndData: ResponseAndData?) {
         responseAndData?.printResponseStatus(file: #file, function: #function, line: #line)
         DispatchQueue.main.async {
-            guard let unwrappedPosts = model as? Array<Post> else { return }
+            guard let unwrappedPosts = model as?  [Post] else { return }
             unwrappedPosts.forEach { post in
-                
-                let blue = Blue()
-                blue.title = post.name ?? "" 
-                self.items[0].items.append(blue)
-                self.tableView.reloadData()
+            let blue = Blue()
+            blue.title = post.name ?? ""
+            self.items[0].items.append(blue)
+            self.tableView.reloadData()
             }
         }
     }
@@ -113,7 +109,3 @@ class ExampleViewController: UIViewController, CancellableBagProvider, DataTaskW
         print("Sucessfuly deinitialized. No memory leaks!")
     }
 }
-
-
-
-

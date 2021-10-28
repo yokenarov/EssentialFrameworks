@@ -19,47 +19,40 @@ import GenericViews
 import NetworkingAPI
 import Essentials
 class HomeViewController: UIViewController {
-    
-    @IBOutlet weak var Container: UIView!
-    @IBOutlet weak var ExampleTitleLabel: UILabel!
-    @IBOutlet weak var PublisherButton: UIButton!
-    @IBOutlet weak var ClosureButton: UIButton!
-    @IBOutlet weak var DelegateButton: UIButton!
-    
+    @IBOutlet weak var container: UIView!
+    @IBOutlet weak var exampleTitleLabel: UILabel!
+    @IBOutlet weak var publisherButton: UIButton!
+    @IBOutlet weak var closureButton: UIButton!
+    @IBOutlet weak var delegateButton: UIButton!
     @IBAction func pushExampleVC(_ sender: UIButton) {
 
         switch sender {
-        case PublisherButton:
+        case publisherButton:
             ApiCaller.shared.preferedStyle = .publisher
-        case ClosureButton:
+        case closureButton:
             ApiCaller.shared.preferedStyle = .closure
-        case DelegateButton:
+        case delegateButton:
             ApiCaller.shared.preferedStyle = .delegate
         default: break
         }
-        
     }
     var animations: [Animations] = [.fadeIn(duration: 1)]
     override func viewDidLoad() {
         super.viewDidLoad()
-        PublisherButton.setupExampleButton()
-        ClosureButton.setupExampleButton()
-        DelegateButton.setupExampleButton()
-        ExampleTitleLabel.setupExampleLabel()
-        Container.setupContainer()
-        
-       
-    
+        publisherButton.setupExampleButton()
+        closureButton.setupExampleButton()
+        delegateButton.setupExampleButton()
+        exampleTitleLabel.setupExampleLabel()
+        container.setupContainer()
     }
-    
     override func viewWillAppear(_ animated: Bool) {
-        ExampleTitleLabel.animate([.fadeOut(duration: 0)])
-        PublisherButton.animate([.fadeOut(duration: 0)])
-        ClosureButton.animate([.fadeOut(duration: 0)])
-        DelegateButton.animate([.fadeOut(duration: 0)])
-        ExampleTitleLabel.animate([.fadeIn(duration: 1)])
-        PublisherButton.animate([.fadeIn(duration: 1.5)])
-        ClosureButton.animate([.fadeIn(duration: 1.5)])
-        DelegateButton.animate([.fadeIn(duration: 1.5)])
+        exampleTitleLabel.animate([.fadeOut(duration: 0)])
+        publisherButton.animate([.fadeOut(duration: 0)])
+        closureButton.animate([.fadeOut(duration: 0)])
+        delegateButton.animate([.fadeOut(duration: 0)])
+        exampleTitleLabel.animate([.fadeIn(duration: 1)])
+        publisherButton.animate([.fadeIn(duration: 1.5)])
+        closureButton.animate([.fadeIn(duration: 1.5)])
+        delegateButton.animate([.fadeIn(duration: 1.5)])
     }
 }

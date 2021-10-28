@@ -1,0 +1,18 @@
+disabled_rules: # rule identifiers to exclude from running
+  - variable_name
+  - nesting
+  - function_parameter_count
+  - line_lenght
+opt_in_rules: # some rules are only opt-in
+included: # paths to include during linting. `--path` is ignored if present.
+  - Project
+  - ProjectTests
+  - ProjectUITests
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+  - Pods
+  - Project/R.generated.swift
+
+# configurable rules can be customized from this configuration file
+# binary rules can set their severity level
+force_cast: warning # implicitly. Give warning only for force casting
+ 

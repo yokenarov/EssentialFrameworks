@@ -10,12 +10,10 @@ import NetworkingAPI
 public enum Schemes: SchemesInterface {
     case http
     case https
-    
     public var scheme: String {
         switch self {
         case .https: return "https"
         case .http: return "http"
         }
     }
-    
 }

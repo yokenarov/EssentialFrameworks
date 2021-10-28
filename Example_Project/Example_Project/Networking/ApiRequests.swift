@@ -7,18 +7,14 @@
 
 import Foundation
 import NetworkingAPI
- 
 public enum ApiRequests: Request {
-    
     case users
     case comments(location: ParameterLocation? = nil, params: [String: String]? = nil)
     case createPost(location: ParameterLocation? = nil, params: [String: String]? = nil)
-    
     public var scheme: SchemesInterface {
         switch self {
         case .users, .comments, .createPost:
             return Schemes.https
-            
         }
     }
     public var baseURL: BaseUrlInterface {
@@ -37,7 +33,6 @@ public enum ApiRequests: Request {
             return Path(for: .createPost())
         }
     }
-    
     public var method: MethodsInterface {
         switch self {
         case .users, .comments:
@@ -46,9 +41,7 @@ public enum ApiRequests: Request {
             return HTTPMethod.post
         }
     }
-    
     public var parameters: RequestParamsInterface? {
-       
         switch self {
         case .users:
             return nil
@@ -58,14 +51,12 @@ public enum ApiRequests: Request {
         case .createPost(let loc, let params):
             guard loc != nil && params != nil else { return nil }
             return  RequestParams.init(location: loc ?? .body, params: params ?? [:])
-        } 
+        }
     }
-    
     public var headers: HeadersInterface {
         switch self {
         case .users, .comments, .createPost:
             return Headers.defaultHeaders
         }
     }
-    
 }

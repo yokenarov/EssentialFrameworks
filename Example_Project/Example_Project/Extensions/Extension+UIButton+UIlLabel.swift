@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-extension UIButton{
+extension UIButton {
     func setupExampleButton() {
         backgroundColor = .blue
         layer.cornerRadius = 5
@@ -20,7 +20,6 @@ extension UILabel {
         textColor = .white
     }
 }
-
 extension UIView {
     func setupContainer() {
         layer.borderWidth = 1
