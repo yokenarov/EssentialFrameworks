@@ -34,16 +34,14 @@ public class GenericTableView: UITableView, UITableViewDataSource, UITableViewDe
     private  var tableViewHasSections: Bool
     private  var shouldShowSelection                 = false
     private  var allCellClasses: [GenericCell.Type]  = []
-    private  weak var loadMoreDelegate: LoadMoreFromBottomDelegate?
     
     //MARK: - Publishers
     public var cellForRowAt   = PassthroughSubject<(GenericModelType, GenericCell), Never>()
     public var didSelectRowAt = PassthroughSubject<GenericModelType, Never>()
     
     //MARK: - Initializer 
-    public init (frame:CGRect, items:[Model],tableViewStyle: UITableView.Style, loadmoreDelegate: LoadMoreFromBottomDelegate, isAllSelected: Bool) {
+    public init (frame:CGRect, items:[Model],tableViewStyle: UITableView.Style, isAllSelected: Bool) {
         self.items                                     = items
-        self.loadMoreDelegate                          = loadmoreDelegate
         self.selectedItems                             = []
         self.filteredItems                             = self.items
         self.tableViewHasSections                      = self.items.count > 1 ? true : false
@@ -123,38 +121,8 @@ public class GenericTableView: UITableView, UITableViewDataSource, UITableViewDe
         tableView.reloadRows(at: [indexPath], with: .fade)
         
     }
-    
-    public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row + 1 == self.getCorrectArray(section: indexPath.section).count {
-            loadMoreDelegate?.loadMoreFromBottom(scrollView: UIScrollView())
-            return
-        }
-    }
-    //MARK: - Helper Functions
-//    public func refreshIdentificatorWhenNewItemIsInsertedAtTopOfOriginalArray() {
-//        for i in 1...items.count - 1 {
-//            items[i].identificator = "\(i)"
-//        }
-//    }
-    
-//    public func reloadWithSelectedAll() {
-//        if isAllSelected && !isSecondaryFilterAppliedToAll {
-//            for row in 0...items.count - 1 {
-//                self.selectedItems.append(Identificator(identificatior: items[row].identificator, indexPath: row))
-//            }
-//            self.reloadData()
-//        }else {
-//            for row in 0...filteredItems.count - 1 {
-//                self.selectedItems.append(Identificator(identificatior: filteredItems[row].identificator, indexPath: row))
-//            }
-//            self.reloadData()
-//        }
-//    }
-    
-    public func reloadWithDeselectAll() {
-        self.selectedItems.removeAll()
-        self.reloadData()
-    }
+   
+ 
     
     func getCorrectArray(section: Int) -> [GenericModelType] {
         if isAllSelected {
