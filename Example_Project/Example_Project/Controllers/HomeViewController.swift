@@ -17,7 +17,7 @@ import UIKit
 import Combine
 import GenericViews
 import NetworkingAPI
-
+import Essentials
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var Container: UIView!

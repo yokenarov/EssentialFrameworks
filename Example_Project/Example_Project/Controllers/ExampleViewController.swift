@@ -9,7 +9,7 @@ import UIKit
 import Combine
 import GenericViews
 import NetworkingAPI
-
+import Essentials
 class ExampleViewController: UIViewController, CancellableBagProvider, DataTaskWithDelegate {
     
     
