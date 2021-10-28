@@ -39,6 +39,7 @@ class HomeViewController: UIViewController {
     var animations: [Animations] = [.fadeIn(duration: 1)]
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = .white.withAlphaComponent(1)
         publisherButton.setupExampleButton()
         closureButton.setupExampleButton()
         delegateButton.setupExampleButton()
@@ -46,13 +47,13 @@ class HomeViewController: UIViewController {
         container.setupContainer()
     }
     override func viewWillAppear(_ animated: Bool) {
-        exampleTitleLabel.animate([.fadeOut(duration: 0)])
-        publisherButton.animate([.fadeOut(duration: 0)])
-        closureButton.animate([.fadeOut(duration: 0)])
-        delegateButton.animate([.fadeOut(duration: 0)])
-        exampleTitleLabel.animate([.fadeIn(duration: 1)])
-        publisherButton.animate([.fadeIn(duration: 1.5)])
-        closureButton.animate([.fadeIn(duration: 1.5)])
-        delegateButton.animate([.fadeIn(duration: 1.5)])
+        exampleTitleLabel.alpha = 0
+        publisherButton.alpha = 0
+        closureButton.alpha = 0
+        delegateButton.alpha = 0
+        exampleTitleLabel.animate([.fadeIn(duration: 0.5)])
+        publisherButton.animate([.fadeIn(duration: 1)])
+        closureButton.animate([.fadeIn(duration: 1)])
+        delegateButton.animate([.fadeIn(duration: 1)])
     }
 }

@@ -18,11 +18,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IN0-yl-75K">
-                                <rect key="frame" x="20" y="198" width="374" height="500"/>
+                                <rect key="frame" x="10" y="273" width="394" height="350"/>
                                 <subviews>
-                                    <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1N8-Ql-hbK">
-                                        <rect key="frame" x="72.5" y="184.5" width="229" height="31"/>
+                                    <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1N8-Ql-hbK">
+                                        <rect key="frame" x="82" y="89.5" width="230" height="31"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="230" id="dBc-X5-N7m"/>
+                                        </constraints>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Make a request with a publisher"/>
@@ -31,9 +34,12 @@
                                             <segue destination="G1s-aW-uVX" kind="show" id="C8U-eA-el7"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MGl-Ll-wbO">
-                                        <rect key="frame" x="80" y="284.5" width="214" height="31"/>
+                                    <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MGl-Ll-wbO">
+                                        <rect key="frame" x="82" y="229.5" width="230" height="31"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="230" id="LXM-zh-EQd"/>
+                                        </constraints>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Make a request with delegate"/>
@@ -42,20 +48,23 @@
                                             <segue destination="G1s-aW-uVX" kind="show" id="EiX-X7-Y3P"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Example Project" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eIK-d1-oUI">
-                                        <rect key="frame" x="30" y="30" width="314" height="40"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a button to make an example network request" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eIK-d1-oUI">
+                                        <rect key="frame" x="0.0" y="1" width="394" height="50"/>
                                         <color key="backgroundColor" systemColor="linkColor"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="rIo-rW-Db8"/>
+                                            <constraint firstAttribute="height" constant="50" id="rIo-rW-Db8"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tiV-rJ-XdH">
-                                        <rect key="frame" x="74.5" y="234.5" width="225" height="31"/>
+                                    <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tiV-rJ-XdH">
+                                        <rect key="frame" x="82" y="159.5" width="230" height="31"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="230" id="uyB-uP-owd"/>
+                                        </constraints>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Make a request with a clousure"/>
@@ -67,27 +76,40 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="500" id="2LX-Nc-R4R"/>
+                                    <constraint firstAttribute="height" constant="350" id="0Bg-XD-MG1"/>
                                     <constraint firstItem="tiV-rJ-XdH" firstAttribute="centerX" secondItem="IN0-yl-75K" secondAttribute="centerX" id="95l-06-pgS"/>
+                                    <constraint firstItem="eIK-d1-oUI" firstAttribute="top" secondItem="IN0-yl-75K" secondAttribute="top" constant="1" id="Q7S-pT-Wye"/>
                                     <constraint firstItem="1N8-Ql-hbK" firstAttribute="centerX" secondItem="IN0-yl-75K" secondAttribute="centerX" id="TOG-k4-kDC"/>
                                     <constraint firstItem="tiV-rJ-XdH" firstAttribute="centerY" secondItem="IN0-yl-75K" secondAttribute="centerY" id="VdW-nI-sty"/>
                                     <constraint firstItem="MGl-Ll-wbO" firstAttribute="centerX" secondItem="IN0-yl-75K" secondAttribute="centerX" id="WSm-FT-adv"/>
-                                    <constraint firstItem="eIK-d1-oUI" firstAttribute="leading" secondItem="IN0-yl-75K" secondAttribute="leading" constant="30" id="Zrs-vD-k4a"/>
-                                    <constraint firstItem="1N8-Ql-hbK" firstAttribute="centerY" secondItem="IN0-yl-75K" secondAttribute="centerY" constant="-50" id="hCU-tt-YbK"/>
-                                    <constraint firstAttribute="trailing" secondItem="eIK-d1-oUI" secondAttribute="trailing" constant="30" id="jAw-cZ-ouS"/>
-                                    <constraint firstItem="eIK-d1-oUI" firstAttribute="top" secondItem="IN0-yl-75K" secondAttribute="top" constant="30" id="kqq-se-mih"/>
-                                    <constraint firstItem="MGl-Ll-wbO" firstAttribute="centerY" secondItem="IN0-yl-75K" secondAttribute="centerY" constant="50" id="n1d-yT-jXo"/>
+                                    <constraint firstItem="eIK-d1-oUI" firstAttribute="leading" secondItem="IN0-yl-75K" secondAttribute="leading" id="Zrs-vD-k4a"/>
+                                    <constraint firstItem="1N8-Ql-hbK" firstAttribute="centerY" secondItem="IN0-yl-75K" secondAttribute="centerY" constant="-70" id="hCU-tt-YbK"/>
+                                    <constraint firstAttribute="trailing" secondItem="eIK-d1-oUI" secondAttribute="trailing" id="jAw-cZ-ouS"/>
+                                    <constraint firstItem="MGl-Ll-wbO" firstAttribute="centerY" secondItem="IN0-yl-75K" secondAttribute="centerY" constant="70" id="n1d-yT-jXo"/>
                                     <constraint firstItem="eIK-d1-oUI" firstAttribute="centerX" secondItem="IN0-yl-75K" secondAttribute="centerX" id="soq-Jk-Lmg"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Example project demo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fqj-4n-E9F">
+                                <rect key="frame" x="10" y="213" width="404" height="60"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="fQY-SY-6cS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="30"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="IN0-yl-75K" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="1HV-Qt-yhA"/>
+                            <constraint firstItem="IN0-yl-75K" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="1HV-Qt-yhA"/>
+                            <constraint firstItem="Fqj-4n-E9F" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="45T-t4-ggd"/>
                             <constraint firstItem="IN0-yl-75K" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="LiS-0o-x62"/>
-                            <constraint firstItem="IN0-yl-75K" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="PBb-1Z-TSl"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="IN0-yl-75K" secondAttribute="trailing" constant="20" id="zCj-L3-X49"/>
+                            <constraint firstItem="IN0-yl-75K" firstAttribute="top" secondItem="Fqj-4n-E9F" secondAttribute="bottom" id="Rrw-oh-zgG"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Fqj-4n-E9F" secondAttribute="trailing" id="Vp4-fL-VDD"/>
+                            <constraint firstItem="IN0-yl-75K" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="cq2-eR-TyO"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="IN0-yl-75K" secondAttribute="trailing" constant="10" id="zCj-L3-X49"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="zeX-Lw-2bT"/>

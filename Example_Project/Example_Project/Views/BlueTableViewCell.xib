@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -25,7 +26,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
-                <color key="backgroundColor" systemColor="systemBlueColor"/>
+                <color key="backgroundColor" systemColor="systemTealColor"/>
                 <constraints>
                     <constraint firstItem="Q1A-Pa-frS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="CYR-cf-sin"/>
                     <constraint firstItem="Q1A-Pa-frS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="UUu-39-IQb"/>
@@ -41,8 +42,8 @@
         </tableViewCell>
     </objects>
     <resources>
-        <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemTealColor">
+            <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
