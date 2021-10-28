@@ -6,13 +6,7 @@
 //
 
 import Foundation
-import Combine
-#if canImport(Essentials)
-import Essentials
-#endif
-#if canImport(GenericViews)
-import GenericViews
-#endif
+import Combine 
 /**
  This protocol defince a base line interface for constructing a URLResponse, that can be passed to the APICallerInterface functions. You will need to provide your custom implementation of this interface for your network layer APIs.
  
@@ -23,8 +17,7 @@ public protocol Request {
     var path:       PathInterface           { get }
     var method:     MethodsInterface        { get }
     var parameters: RequestParamsInterface? { get }
-    var headers:    HeadersInterface        { get }
-    var dataType:   DataType                { get }
+    var headers:    HeadersInterface        { get } 
 }
 /**
  This protocol defince a base line interface for providing the scheme of your URL. (http / https).
