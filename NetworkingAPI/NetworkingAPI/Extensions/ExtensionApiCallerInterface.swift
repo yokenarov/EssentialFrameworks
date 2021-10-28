@@ -47,14 +47,16 @@ extension APICallerInterface {
      */
     public func makeURLRequestWithClosure<ModelType: Codable>(for request: Request,
                                                               with modelType: ModelType.Type,
-                                                              withResponseAndData completion: @escaping (ModelType?) -> Void) {
+                                                              withResponseAndData completion: @escaping (ModelType?, ResponseAndDataInterface?) -> Void) {
         var unwrappedRequest: URLRequest?
+        var responseAndData: ResponseAndData?
         do { try unwrappedRequest = request.fullRequest } catch { print(error) }
         URLSession.shared.dataTask(with: unwrappedRequest!) { data, response, error in
             guard error == nil else {
                 print(NetworkingAPIError.networkError(error: "❌ A networking error occured \(error?.localizedDescription ?? "No error received"). Default Data() and URLResponse() will be returned."))
+                responseAndData = ResponseAndData(response: response ?? URLResponse(), data: data ?? Data())
                 DispatchQueue.main.async {
-                    completion(nil)
+                    completion(nil,responseAndData)
                 }
                 return
             }
@@ -68,11 +70,14 @@ extension APICallerInterface {
             do {
                 decodedData = try jsonDecoder.decode(modelType.self, from: data!)
             } catch {
-                print(NetworkingAPIError.jsonEncodingError( "❌ Could not parse the model you have provided. Check if your keys match the ones coming from the response."))
-                completion(nil)
+                print(NetworkingAPIError.jsonDecodingError( "❌ Could not parse the model you have provided. Check if your keys match the ones coming from the response."))
+                responseAndData = ResponseAndData(response: response ?? URLResponse(), data: data ?? Data())
+                completion(nil, responseAndData)
+                return
             }
             DispatchQueue.main.async {
-                completion(decodedData)
+                responseAndData = ResponseAndData(response: response ?? URLResponse(), data: data ?? Data())
+                completion(decodedData, responseAndData)
             }
         }.resume()
     } 
