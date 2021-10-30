@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA0DBEB3272DC47C001857CA /* SwiftyDependency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0DBEB2272DC47C001857CA /* SwiftyDependency.framework */; };
+		AA0DBEB4272DC47C001857CA /* SwiftyDependency.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AA0DBEB2272DC47C001857CA /* SwiftyDependency.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AA0DBEBF272DC95B001857CA /* APIServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0DBEBE272DC95B001857CA /* APIServiceManager.swift */; };
 		AA12932B272AA37A00A989F2 /* NetworkingAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA12932A272AA37A00A989F2 /* NetworkingAPI.framework */; };
 		AA12932C272AA37A00A989F2 /* NetworkingAPI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AA12932A272AA37A00A989F2 /* NetworkingAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AA12932F272AA37E00A989F2 /* GenericViews.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA12932E272AA37E00A989F2 /* GenericViews.framework */; };
@@ -67,6 +70,7 @@
 				AA129341272ABA9E00A989F2 /* Essentials.framework in Embed Frameworks */,
 				AA12932C272AA37A00A989F2 /* NetworkingAPI.framework in Embed Frameworks */,
 				AA129330272AA37E00A989F2 /* GenericViews.framework in Embed Frameworks */,
+				AA0DBEB4272DC47C001857CA /* SwiftyDependency.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -74,6 +78,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AA0DBEB2272DC47C001857CA /* SwiftyDependency.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyDependency.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA0DBEBE272DC95B001857CA /* APIServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceManager.swift; sourceTree = "<group>"; };
 		AA12932A272AA37A00A989F2 /* NetworkingAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NetworkingAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA12932E272AA37E00A989F2 /* GenericViews.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GenericViews.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA129334272AAA5100A989F2 /* ExampleModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleModels.swift; sourceTree = "<group>"; };
@@ -116,6 +122,7 @@
 				AA129340272ABA9E00A989F2 /* Essentials.framework in Frameworks */,
 				AA12932B272AA37A00A989F2 /* NetworkingAPI.framework in Frameworks */,
 				AA12932F272AA37E00A989F2 /* GenericViews.framework in Frameworks */,
+				AA0DBEB3272DC47C001857CA /* SwiftyDependency.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,9 +143,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AA0DBEBD272DC932001857CA /* APIServiceManager */ = {
+			isa = PBXGroup;
+			children = (
+				AA0DBEBE272DC95B001857CA /* APIServiceManager.swift */,
+			);
+			path = APIServiceManager;
+			sourceTree = "<group>";
+		};
 		AA129329272AA37A00A989F2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AA0DBEB2272DC47C001857CA /* SwiftyDependency.framework */,
 				AA12933F272ABA9E00A989F2 /* Essentials.framework */,
 				AA12932E272AA37E00A989F2 /* GenericViews.framework */,
 				AA12932A272AA37A00A989F2 /* NetworkingAPI.framework */,
@@ -236,6 +252,7 @@
 		AAFBA96B272AA0F1009D6AEE /* Example_Project */ = {
 			isa = PBXGroup;
 			children = (
+				AA0DBEBD272DC932001857CA /* APIServiceManager */,
 				AAE7DCE0272C5CC8004C1874 /* ModelViews */,
 				AA129339272AAC0F00A989F2 /* Singletons */,
 				AA129336272AAA8A00A989F2 /* Extensions */,
@@ -437,6 +454,7 @@
 				AA78D6F7272AA14500F2E1A2 /* HomeViewController.swift in Sources */,
 				AAE7DCE2272C5CE3004C1874 /* ExampleModelView.swift in Sources */,
 				AA78D6E8272AA12600F2E1A2 /* BaseURL.swift in Sources */,
+				AA0DBEBF272DC95B001857CA /* APIServiceManager.swift in Sources */,
 				AAFBA96D272AA0F1009D6AEE /* AppDelegate.swift in Sources */,
 				AAFBA96F272AA0F1009D6AEE /* SceneDelegate.swift in Sources */,
 				AA78D6F3272AA14500F2E1A2 /* BlueTableViewCell.swift in Sources */,

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftyDependency
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?

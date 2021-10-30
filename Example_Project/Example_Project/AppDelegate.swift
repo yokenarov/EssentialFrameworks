@@ -6,12 +6,15 @@
 //
 
 import UIKit
-
+import SwiftyDependency
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    var apiManager: ApiManager!
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        apiManager = ApiManager()
+        DependencyCotainer.register(apiManager!)
         return true
     }
 

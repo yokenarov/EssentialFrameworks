@@ -9,19 +9,18 @@ import Foundation
 import GenericViews
 import Combine
 import NetworkingAPI
+import SwiftyDependency
 class ExampleModelView: CancellableBagProvider {
     var cancellableBag = Set<AnyCancellable>()
-    var closureItems =    PassthroughSubject<GenericSectionWithItems, Never>()
-    var publisherItems =  PassthroughSubject<GenericSectionWithItems, Never>()
-    var delegateItems =  PassthroughSubject<GenericSectionWithItems, Never>()
-    var multithreadedItems = PassthroughSubject<GenericSectionWithItems, Never>()
+    @ResolvedDependency var apiManager: ApiManager
     // MARK: - ClosureMethod
     func loadRequestWithClosure(completion: @escaping (GenericSectionWithItems) -> Void) {
         let genericTableViewItemWithSection  = GenericSectionWithItems(
             sectionLableBuilder: SectionLableBuilder(sectiontext: "", fontSize: 20, sectionHeight: 50, ""),
             items: [])
         ApiCaller.shared.makeURLRequestWithClosure(
-            for: ApiRequests.createPost(location: .body, params: ["title": "foo", "body": "bar", "userId": "1"]),
+            for: apiManager.creatingAPostService(location: .body,
+                                                 params: ["title": "foo", "body": "bar", "userId": "1"]),
                with: Comment.self) { decodedResponse, responseAndData in
                    responseAndData?.printResponseStatus(file: #file, function: #function, line: #line)
                    guard decodedResponse != nil else {
@@ -36,7 +35,7 @@ class ExampleModelView: CancellableBagProvider {
     }
     // MARK: - PublisherMethod
     func loadRequestWithPublisher() -> AnyPublisher<[User], Never> {
-        let publisher = ApiCaller.shared.makeURLRequesWithPublisher(for: ApiRequests.users,
+        let publisher = ApiCaller.shared.makeURLRequesWithPublisher(for: apiManager.usersService(),
                                                                        cancellableBagProvider: self)
             .printNetworkResponseInfo(file: #file, function: #function, line: #line)
             .tryMap(\.data)
@@ -46,7 +45,6 @@ class ExampleModelView: CancellableBagProvider {
             })
             .decode(type: Array<User>.self, decoder: JSONDecoder())
             .map({ arr -> [User] in
-                
                 return arr
             })
             .assertNoFailure()
@@ -59,8 +57,10 @@ class ExampleModelView: CancellableBagProvider {
     // MARK: - MultiThreaded
     func loadRequestWithMultiThreaded(completion: @escaping ([GenericModelType]) -> Void) {
         ApiCaller.shared.makeConcurrentCallWithClosures(
-            concurrentRequests: [ApiRequests.users,
-                                 ApiRequests.createPost(location: .body, params: ["title": "foo", "body": "bar", "userId": "1"])],
+            concurrentRequests: [apiManager.usersService(),
+                                 apiManager.creatingAPostService(
+                                    location: .body,
+                                    params: ["title": "foo", "body": "bar", "userId": "1"])],
             qos: .userInitiated, attributes: .concurrent) { arrayOfTuples in
                 let jsonDecoder = JSONDecoder()
                 var arrayOfUsers: [User]?

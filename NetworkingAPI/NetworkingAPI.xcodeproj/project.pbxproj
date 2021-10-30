@@ -25,7 +25,6 @@
 		AA7A36CF2728897600EF9CBF /* ExtensionHeadersInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7A36CE2728897600EF9CBF /* ExtensionHeadersInterface.swift */; };
 		AAC134C02727CCFC00EBABA1 /* ExtensionApiCallerInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC134BF2727CCFC00EBABA1 /* ExtensionApiCallerInterface.swift */; };
 		AAE7DCDD272C350D004C1874 /* ConcurrencyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE7DCDC272C350D004C1874 /* ConcurrencyManager.swift */; };
-		AAE7DCDF272C3542004C1874 /* TypesOfQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE7DCDE272C3542004C1874 /* TypesOfQueue.swift */; };
 		AAFBA959272A6ED0009D6AEE /* CancellableBagProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFBA958272A6ED0009D6AEE /* CancellableBagProvider.swift */; };
 		AAFBA95B272A7045009D6AEE /* DataTaskWithDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFBA95A272A7045009D6AEE /* DataTaskWithDelegate.swift */; };
 /* End PBXBuildFile section */
@@ -61,7 +60,6 @@
 		AA7A36CE2728897600EF9CBF /* ExtensionHeadersInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionHeadersInterface.swift; sourceTree = "<group>"; };
 		AAC134BF2727CCFC00EBABA1 /* ExtensionApiCallerInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionApiCallerInterface.swift; sourceTree = "<group>"; };
 		AAE7DCDC272C350D004C1874 /* ConcurrencyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcurrencyManager.swift; sourceTree = "<group>"; };
-		AAE7DCDE272C3542004C1874 /* TypesOfQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypesOfQueue.swift; sourceTree = "<group>"; };
 		AAFBA958272A6ED0009D6AEE /* CancellableBagProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancellableBagProvider.swift; sourceTree = "<group>"; };
 		AAFBA95A272A7045009D6AEE /* DataTaskWithDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTaskWithDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -132,7 +130,6 @@
 			isa = PBXGroup;
 			children = (
 				AA206D432725535F007323F8 /* HTTPMethods.swift */,
-				AAE7DCDE272C3542004C1874 /* TypesOfQueue.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -307,7 +304,6 @@
 				AAFBA95B272A7045009D6AEE /* DataTaskWithDelegate.swift in Sources */,
 				AAC134C02727CCFC00EBABA1 /* ExtensionApiCallerInterface.swift in Sources */,
 				AA325DA52726DE850077F4D0 /* NetworkingApiError.swift in Sources */,
-				AAE7DCDF272C3542004C1874 /* TypesOfQueue.swift in Sources */,
 				AA7A36CF2728897600EF9CBF /* ExtensionHeadersInterface.swift in Sources */,
 				AAE7DCDD272C350D004C1874 /* ConcurrencyManager.swift in Sources */,
 				AA325DB42726FFFF0077F4D0 /* ExtensionPublisher.swift in Sources */,
