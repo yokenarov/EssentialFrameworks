@@ -24,6 +24,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var publisherButton: UIButton!
     @IBOutlet weak var closureButton: UIButton!
     @IBOutlet weak var delegateButton: UIButton!
+    @IBOutlet weak var multiThreadedButton: UIButton!
     @IBAction func pushExampleVC(_ sender: UIButton) {
 
         switch sender {
@@ -33,6 +34,8 @@ class HomeViewController: UIViewController {
             ApiCaller.shared.preferedStyle = .closure
         case delegateButton:
             ApiCaller.shared.preferedStyle = .delegate
+        case multiThreadedButton:
+            ApiCaller.shared.preferedStyle = .multiThread
         default: break
         }
     }
@@ -44,16 +47,20 @@ class HomeViewController: UIViewController {
         closureButton.setupExampleButton()
         delegateButton.setupExampleButton()
         exampleTitleLabel.setupExampleLabel()
+        multiThreadedButton.setupExampleButton()
         container.setupContainer()
+
     }
     override func viewWillAppear(_ animated: Bool) {
         exampleTitleLabel.alpha = 0
         publisherButton.alpha = 0
         closureButton.alpha = 0
         delegateButton.alpha = 0
+        multiThreadedButton.alpha = 0
         exampleTitleLabel.animate([.fadeIn(duration: 0.5)])
         publisherButton.animate([.fadeIn(duration: 1)])
         closureButton.animate([.fadeIn(duration: 1)])
         delegateButton.animate([.fadeIn(duration: 1)])
+        multiThreadedButton.animate([.fadeIn(duration: 1)])
     }
 }

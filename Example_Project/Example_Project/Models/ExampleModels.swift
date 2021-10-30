@@ -24,4 +24,5 @@ enum PrefferedStyle {
     case publisher
     case closure
     case delegate
+    case multiThread
 }

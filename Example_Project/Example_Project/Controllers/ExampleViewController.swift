@@ -10,6 +10,7 @@ import NetworkingAPI
 import Essentials
 class ExampleViewController: UIViewController, CancellableBagProvider, DataTaskWithDelegate {
     @IBOutlet weak var tableViewContainer: UIView!
+    var exampleModelView = ExampleModelView()
     var cancellableBag = Set<AnyCancellable>()
     var tableView: GenericTableView!
     var items = [GenericSectionWithItems]()
@@ -17,11 +18,16 @@ class ExampleViewController: UIViewController, CancellableBagProvider, DataTaskW
         super.viewDidLoad()
         switch ApiCaller.shared.preferedStyle {
         case .publisher:
-            loadTranslationsWithPublisher()
+            loadTableviewWithPublisherData()
         case .closure:
-            loadTranslationsWithClosure()
+            loadTableViewWithClosureData()
         case .delegate:
-            loadTranslationsWithDelegate()
+            loadTableViewWithDelegate()
+        case .multiThread:
+            exampleModelView.loadRequestWithMultiThreaded { genericItems in
+                self.items[0].items = genericItems
+                self.tableView.reloadData()
+            }
         }
     }
     override func viewDidLayoutSubviews() {
@@ -36,76 +42,53 @@ class ExampleViewController: UIViewController, CancellableBagProvider, DataTaskW
             items: items, tableViewStyle: .plain,
             isAllSelected: true)
         tableView.cellForRowAt.sink(receiveValue: { item, cell in
-            guard let item = item as? Blue else { return }
-            guard let cell = cell as? BlueTableViewCell else { return }
-            cell.label.text = item.title
+            if let item = item as? Orange, let cell = cell as? OrangeTableViewCell {
+                cell.label.text = item.title
+            } else if let item = item as? Blue, let cell = cell as? BlueTableViewCell {
+                cell.label.text = item.title
+            }
         }).store(in: &cancellableBag)
         tableView.didSelectRowAt.sink(receiveValue: { _ in
         }).store(in: &cancellableBag)
         self.tableViewContainer.addSubview(tableView)
     }
-    // MARK: - ClosureMethod
-    func loadTranslationsWithClosure() {
-        ApiCaller.shared.makeURLRequestWithClosure(
-            for: ApiRequests.createPost(location: .body, params: ["title": "foo", "body": "bar", "userId": "1"]),
-            with: Comment.self) { decodedResponse, responseAndData in
-            responseAndData?.printResponseStatus(file: #file, function: #function, line: #line)
-            guard decodedResponse != nil else {
-                print(NetworkingAPIError.nilData)
-                return
-            }
-            let blue = Blue()
-            blue.title = decodedResponse?.title ?? ""
-            self.items[0].items.append(blue)
-            self.tableView.reloadData()
-        }
-    }
-    // MARK: - PublisherMethod
-    func loadTranslationsWithPublisher() {
-        ApiCaller.shared.makeURLRequesWithPublisher(for: ApiRequests.users, cancellableBagProvider: self)
-            .printNetworkResponseInfo(file: #file, function: #function, line: #line)
-            .tryMap(\.data)
-            .receive(on: RunLoop.main, options: nil)
-            .filter({ item in
-                return !item.isEmpty
-            })
-            .decode(type: Array<User>.self, decoder: JSONDecoder())
-            .sink { [unowned self] completion in
-                switch completion {
-                case .finished:
-                    self.tableView.reloadData()
-                case .failure(let error):
-                    AlertPresenter.shared.presentAlert(viewController: self, errorMessage: error.localizedDescription)
-                    print(error)
+    func loadTableviewWithPublisherData() {
+        exampleModelView.loadRequestWithPublisher()
+            .sink { [weak self] _ in
+                self?.tableView.reloadData()
+            } receiveValue: { [weak self] users in
+                users.forEach { user in
+                    let blue = Blue()
+                    blue.title = user.name ?? ""
+                    self?.items[0].items.append(blue)
                 }
-            }
-    receiveValue: { users in
-        users.forEach { user in
-            let blue = Blue()
-            blue.title = user.name ?? ""
-            self.items[0].items.append(blue)
+            }.store(in: &cancellableBag)
+    }
+    func loadTableViewWithClosureData() {
+        exampleModelView.loadRequestWithClosure { [weak self] genericItem in
+            self?.items[0].items = genericItem.items
+            self?.tableView.reloadData()
         }
-    }.store(in: &cancellableBag)
     }
     // MARK: - DelegateMethod
-    func loadTranslationsWithDelegate() {
+    func loadTableViewWithDelegate() {
         ApiCaller.shared.makeURLRequestWithDelegate(
             for: ApiRequests.comments(location: .url, params: ["postId": "1"]),
-            with: Array<Post>.self, dataTaskDelegateImplementor: self)
+               with: Array<Post>.self, dataTaskDelegateImplementor: self)
     }
     func resultFromURLRequestWithDelegate(model: Codable?, responseAndData: ResponseAndData?) {
         responseAndData?.printResponseStatus(file: #file, function: #function, line: #line)
         DispatchQueue.main.async {
-            guard let unwrappedPosts = model as?  [Post] else { return }
+            guard let unwrappedPosts = model as? [Post] else { return }
             unwrappedPosts.forEach { post in
-            let blue = Blue()
-            blue.title = post.name ?? ""
-            self.items[0].items.append(blue)
-            self.tableView.reloadData()
+                let blue = Blue()
+                blue.title = post.name ?? ""
+                self.items[0].items.append(blue)
+                self.tableView.reloadData()
             }
         }
     }
     deinit {
-        print("Sucessfuly deinitialized. No memory leaks!")
+        print("Sucessfuly deinitialized ExampleViewController. No memory leaks!")
     }
 }

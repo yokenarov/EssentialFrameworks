@@ -128,4 +128,11 @@ extension APICallerInterface {
             }
         }.resume()
     }
+    
+    public func makeConcurrentCallWithClosures(concurrentRequests: [Request], qos: DispatchQoS,attributes: DispatchQueue.Attributes, completedRequests: @escaping ([(Int, ResponseAndDataInterface)]) -> ()) {
+        let concurrencyManager = ConcurencyManager(qos: qos, attributes: attributes, queue: .global())
+        concurrencyManager.makeConcurrentCallClosures(concurrentRequests: concurrentRequests) { arrayOfTuples in
+                completedRequests(arrayOfTuples)
+        }
+    }
 }

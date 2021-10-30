@@ -16,3 +16,11 @@ class Blue: GenericModelType {
     var identificator: String = ""
     var tableViewIdentificator: Identificator = Identificator(identificatior: "", indexPath: 0)
 }
+class Orange: GenericModelType {
+    var title = ""
+    var cellRepresentingModelType: GenericCell = OrangeTableViewCell()
+    var primaryValueToFilterBy: Filterable = ""
+    var secondaryValueToFilterBy: Filterable = ""
+    var identificator: String = ""
+    var tableViewIdentificator: Identificator = Identificator(identificatior: "", indexPath: 0)
+}

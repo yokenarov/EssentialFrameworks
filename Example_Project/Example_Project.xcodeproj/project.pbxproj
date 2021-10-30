@@ -28,6 +28,9 @@
 		AA78D6FA272AA15400F2E1A2 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA78D6F9272AA15400F2E1A2 /* Models.swift */; };
 		AA78D6FD272AA17A00F2E1A2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA78D6FB272AA17A00F2E1A2 /* Main.storyboard */; };
 		AA78D6FE272AA17A00F2E1A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA78D6FC272AA17A00F2E1A2 /* LaunchScreen.storyboard */; };
+		AAE7DCE2272C5CE3004C1874 /* ExampleModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE7DCE1272C5CE3004C1874 /* ExampleModelView.swift */; };
+		AAE7DCE9272D0EF4004C1874 /* OrangeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE7DCE7272D0EF4004C1874 /* OrangeTableViewCell.swift */; };
+		AAE7DCEA272D0EF4004C1874 /* OrangeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAE7DCE8272D0EF4004C1874 /* OrangeTableViewCell.xib */; };
 		AAFBA96D272AA0F1009D6AEE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFBA96C272AA0F1009D6AEE /* AppDelegate.swift */; };
 		AAFBA96F272AA0F1009D6AEE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFBA96E272AA0F1009D6AEE /* SceneDelegate.swift */; };
 		AAFBA971272AA0F1009D6AEE /* ExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFBA970272AA0F1009D6AEE /* ExampleViewController.swift */; };
@@ -89,6 +92,9 @@
 		AA78D6F9272AA15400F2E1A2 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		AA78D6FB272AA17A00F2E1A2 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		AA78D6FC272AA17A00F2E1A2 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		AAE7DCE1272C5CE3004C1874 /* ExampleModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleModelView.swift; sourceTree = "<group>"; };
+		AAE7DCE7272D0EF4004C1874 /* OrangeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrangeTableViewCell.swift; sourceTree = "<group>"; };
+		AAE7DCE8272D0EF4004C1874 /* OrangeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrangeTableViewCell.xib; sourceTree = "<group>"; };
 		AAFBA969272AA0F1009D6AEE /* Example_Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example_Project.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAFBA96C272AA0F1009D6AEE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AAFBA96E272AA0F1009D6AEE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -154,6 +160,8 @@
 			children = (
 				AA78D6F2272AA14500F2E1A2 /* BlueTableViewCell.xib */,
 				AA78D6ED272AA14500F2E1A2 /* BlueTableViewCell.swift */,
+				AAE7DCE7272D0EF4004C1874 /* OrangeTableViewCell.swift */,
+				AAE7DCE8272D0EF4004C1874 /* OrangeTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -196,6 +204,14 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
+		AAE7DCE0272C5CC8004C1874 /* ModelViews */ = {
+			isa = PBXGroup;
+			children = (
+				AAE7DCE1272C5CE3004C1874 /* ExampleModelView.swift */,
+			);
+			path = ModelViews;
+			sourceTree = "<group>";
+		};
 		AAFBA960272AA0F1009D6AEE = {
 			isa = PBXGroup;
 			children = (
@@ -220,6 +236,7 @@
 		AAFBA96B272AA0F1009D6AEE /* Example_Project */ = {
 			isa = PBXGroup;
 			children = (
+				AAE7DCE0272C5CC8004C1874 /* ModelViews */,
 				AA129339272AAC0F00A989F2 /* Singletons */,
 				AA129336272AAA8A00A989F2 /* Extensions */,
 				AA129333272AAA4400A989F2 /* Models */,
@@ -361,6 +378,7 @@
 			files = (
 				AA78D6F8272AA14500F2E1A2 /* BlueTableViewCell.xib in Resources */,
 				AAFBA976272AA0F2009D6AEE /* Assets.xcassets in Resources */,
+				AAE7DCEA272D0EF4004C1874 /* OrangeTableViewCell.xib in Resources */,
 				AA78D6FD272AA17A00F2E1A2 /* Main.storyboard in Resources */,
 				AA78D6FE272AA17A00F2E1A2 /* LaunchScreen.storyboard in Resources */,
 			);
@@ -413,9 +431,11 @@
 				AA78D6EC272AA12600F2E1A2 /* Headers.swift in Sources */,
 				AA12933B272AAC1C00A989F2 /* ExampleSingletons.swift in Sources */,
 				AAFBA971272AA0F1009D6AEE /* ExampleViewController.swift in Sources */,
+				AAE7DCE9272D0EF4004C1874 /* OrangeTableViewCell.swift in Sources */,
 				AA78D6EB272AA12600F2E1A2 /* RequestParams.swift in Sources */,
 				AA78D6EA272AA12600F2E1A2 /* ApiRequests.swift in Sources */,
 				AA78D6F7272AA14500F2E1A2 /* HomeViewController.swift in Sources */,
+				AAE7DCE2272C5CE3004C1874 /* ExampleModelView.swift in Sources */,
 				AA78D6E8272AA12600F2E1A2 /* BaseURL.swift in Sources */,
 				AAFBA96D272AA0F1009D6AEE /* AppDelegate.swift in Sources */,
 				AAFBA96F272AA0F1009D6AEE /* SceneDelegate.swift in Sources */,
