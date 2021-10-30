@@ -38,4 +38,6 @@ Now since its a new workspace, you will have to include the frameworks into your
 Go to your project in Xcode -> General -> scroll to Frameworks and embbeded libraries -> Click the + and add the frameworks that you have imported. 
 
 That should be it. 
+This is how it should look like: 
+![Alt text](Example_Project_SS.png?raw=true)
 
