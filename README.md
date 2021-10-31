@@ -9,8 +9,8 @@ Open terminal and cd into the cloned project directory then run:
 
 ![Alt text](assemblingWorkspace.png?raw=true)
 
->> cd Frameworks
->> sudo chmod +x assembleExampleWorkspace
+> cd Frameworks
+> sudo chmod +x assembleExampleWorkspace
 
 This will make the script executable. It will prompt you for your password and you will have to enter it. If you are unsure wether or not to run the script feel free to inspect it before you enable execution its execution. 
 After that run: 
