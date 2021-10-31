@@ -9,12 +9,14 @@ import UIKit
 import SwiftyDependency
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    // Declare your dependencies and instantiate them in the didFinishLaunchingWithOptions.
     var apiManager: ApiManager!
+    var exampleVCManager: ExampleVCManager!
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        apiManager = ApiManager()
-        DependencyCotainer.register(apiManager!)
+        // Instantiation of dependencies and registering them in the DC.
+        apiManager = ApiManager().registerDependency()
+        exampleVCManager = ExampleVCManager().registerDependency()
         return true
     }
 

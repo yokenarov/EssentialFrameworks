@@ -10,6 +10,7 @@
 		AA0DBEB3272DC47C001857CA /* SwiftyDependency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0DBEB2272DC47C001857CA /* SwiftyDependency.framework */; };
 		AA0DBEB4272DC47C001857CA /* SwiftyDependency.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AA0DBEB2272DC47C001857CA /* SwiftyDependency.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AA0DBEBF272DC95B001857CA /* APIServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0DBEBE272DC95B001857CA /* APIServiceManager.swift */; };
+		AA0DBEC3272E8331001857CA /* ExampleVCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0DBEC2272E8331001857CA /* ExampleVCManager.swift */; };
 		AA12932B272AA37A00A989F2 /* NetworkingAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA12932A272AA37A00A989F2 /* NetworkingAPI.framework */; };
 		AA12932C272AA37A00A989F2 /* NetworkingAPI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AA12932A272AA37A00A989F2 /* NetworkingAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AA12932F272AA37E00A989F2 /* GenericViews.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA12932E272AA37E00A989F2 /* GenericViews.framework */; };
@@ -31,7 +32,6 @@
 		AA78D6FA272AA15400F2E1A2 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA78D6F9272AA15400F2E1A2 /* Models.swift */; };
 		AA78D6FD272AA17A00F2E1A2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA78D6FB272AA17A00F2E1A2 /* Main.storyboard */; };
 		AA78D6FE272AA17A00F2E1A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA78D6FC272AA17A00F2E1A2 /* LaunchScreen.storyboard */; };
-		AAE7DCE2272C5CE3004C1874 /* ExampleModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE7DCE1272C5CE3004C1874 /* ExampleModelView.swift */; };
 		AAE7DCE9272D0EF4004C1874 /* OrangeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE7DCE7272D0EF4004C1874 /* OrangeTableViewCell.swift */; };
 		AAE7DCEA272D0EF4004C1874 /* OrangeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAE7DCE8272D0EF4004C1874 /* OrangeTableViewCell.xib */; };
 		AAFBA96D272AA0F1009D6AEE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFBA96C272AA0F1009D6AEE /* AppDelegate.swift */; };
@@ -80,6 +80,7 @@
 /* Begin PBXFileReference section */
 		AA0DBEB2272DC47C001857CA /* SwiftyDependency.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyDependency.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA0DBEBE272DC95B001857CA /* APIServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceManager.swift; sourceTree = "<group>"; };
+		AA0DBEC2272E8331001857CA /* ExampleVCManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleVCManager.swift; sourceTree = "<group>"; };
 		AA12932A272AA37A00A989F2 /* NetworkingAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NetworkingAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA12932E272AA37E00A989F2 /* GenericViews.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GenericViews.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA129334272AAA5100A989F2 /* ExampleModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleModels.swift; sourceTree = "<group>"; };
@@ -98,7 +99,6 @@
 		AA78D6F9272AA15400F2E1A2 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		AA78D6FB272AA17A00F2E1A2 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		AA78D6FC272AA17A00F2E1A2 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		AAE7DCE1272C5CE3004C1874 /* ExampleModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleModelView.swift; sourceTree = "<group>"; };
 		AAE7DCE7272D0EF4004C1874 /* OrangeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrangeTableViewCell.swift; sourceTree = "<group>"; };
 		AAE7DCE8272D0EF4004C1874 /* OrangeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrangeTableViewCell.xib; sourceTree = "<group>"; };
 		AAFBA969272AA0F1009D6AEE /* Example_Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example_Project.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -143,12 +143,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AA0DBEBD272DC932001857CA /* APIServiceManager */ = {
+		AA0DBEBD272DC932001857CA /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				AA0DBEC5272E8E2B001857CA /* ViewControllers */,
+				AA0DBEC4272E8E18001857CA /* NetworkingServices */,
+			);
+			path = Dependencies;
+			sourceTree = "<group>";
+		};
+		AA0DBEC4272E8E18001857CA /* NetworkingServices */ = {
 			isa = PBXGroup;
 			children = (
 				AA0DBEBE272DC95B001857CA /* APIServiceManager.swift */,
 			);
-			path = APIServiceManager;
+			path = NetworkingServices;
+			sourceTree = "<group>";
+		};
+		AA0DBEC5272E8E2B001857CA /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				AA0DBEC2272E8331001857CA /* ExampleVCManager.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		AA129329272AA37A00A989F2 /* Frameworks */ = {
@@ -220,14 +237,6 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
-		AAE7DCE0272C5CC8004C1874 /* ModelViews */ = {
-			isa = PBXGroup;
-			children = (
-				AAE7DCE1272C5CE3004C1874 /* ExampleModelView.swift */,
-			);
-			path = ModelViews;
-			sourceTree = "<group>";
-		};
 		AAFBA960272AA0F1009D6AEE = {
 			isa = PBXGroup;
 			children = (
@@ -252,8 +261,7 @@
 		AAFBA96B272AA0F1009D6AEE /* Example_Project */ = {
 			isa = PBXGroup;
 			children = (
-				AA0DBEBD272DC932001857CA /* APIServiceManager */,
-				AAE7DCE0272C5CC8004C1874 /* ModelViews */,
+				AA0DBEBD272DC932001857CA /* Dependencies */,
 				AA129339272AAC0F00A989F2 /* Singletons */,
 				AA129336272AAA8A00A989F2 /* Extensions */,
 				AA129333272AAA4400A989F2 /* Models */,
@@ -451,8 +459,8 @@
 				AAE7DCE9272D0EF4004C1874 /* OrangeTableViewCell.swift in Sources */,
 				AA78D6EB272AA12600F2E1A2 /* RequestParams.swift in Sources */,
 				AA78D6EA272AA12600F2E1A2 /* ApiRequests.swift in Sources */,
+				AA0DBEC3272E8331001857CA /* ExampleVCManager.swift in Sources */,
 				AA78D6F7272AA14500F2E1A2 /* HomeViewController.swift in Sources */,
-				AAE7DCE2272C5CE3004C1874 /* ExampleModelView.swift in Sources */,
 				AA78D6E8272AA12600F2E1A2 /* BaseURL.swift in Sources */,
 				AA0DBEBF272DC95B001857CA /* APIServiceManager.swift in Sources */,
 				AAFBA96D272AA0F1009D6AEE /* AppDelegate.swift in Sources */,

@@ -6,7 +6,10 @@
 //
 
 import Foundation
- protocol DependencyContainerInterface {
-    var dependencies: [String: WeakAnyObject] { get set }
-}
 public protocol Dependency: AnyObject {}
+extension Dependency {
+    public func registerDependency() -> Self {
+        DependencyCotainer.register(self)
+        return self
+    }
+}

@@ -1,25 +1,32 @@
 //
-//  ExampleModelView.swift
+//  APIManager.swift
 //  Example_Project
 //
-//  Created by Jordan Kenarov on 29.10.21.
+//  Created by Jordan Kenarov on 30.10.21.
 //
 
 import Foundation
-import GenericViews
-import Combine
 import NetworkingAPI
 import SwiftyDependency
-class ExampleModelView: CancellableBagProvider {
+import GenericViews
+import Combine
+class ApiManager: Dependency, CancellableBagProvider {
     var cancellableBag = Set<AnyCancellable>()
-    @ResolvedDependency var apiManager: ApiManager
-    // MARK: - ClosureMethod
+    func usersService() -> ApiRequests {
+        return ApiRequests.users
+    }
+    func creatingAPostService(location: ParameterLocation?, params: [String: String]?) -> ApiRequests {
+        return ApiRequests.createPost(location: location, params: params)
+    }
+    func commentsService(location: ParameterLocation?, params: [String: String]?) -> ApiRequests {
+        return ApiRequests.comments(location: location, params: params)
+    }
     func loadRequestWithClosure(completion: @escaping (GenericSectionWithItems) -> Void) {
         let genericTableViewItemWithSection  = GenericSectionWithItems(
             sectionLableBuilder: SectionLableBuilder(sectiontext: "", fontSize: 20, sectionHeight: 50, ""),
             items: [])
         ApiCaller.shared.makeURLRequestWithClosure(
-            for: apiManager.creatingAPostService(location: .body,
+            for: creatingAPostService(location: .body,
                                                  params: ["title": "foo", "body": "bar", "userId": "1"]),
                with: Comment.self) { decodedResponse, responseAndData in
                    responseAndData?.printResponseStatus(file: #file, function: #function, line: #line)
@@ -35,7 +42,7 @@ class ExampleModelView: CancellableBagProvider {
     }
     // MARK: - PublisherMethod
     func loadRequestWithPublisher() -> AnyPublisher<[User], Never> {
-        let publisher = ApiCaller.shared.makeURLRequesWithPublisher(for: apiManager.usersService(),
+        let publisher = ApiCaller.shared.makeURLRequesWithPublisher(for: usersService(),
                                                                        cancellableBagProvider: self)
             .printNetworkResponseInfo(file: #file, function: #function, line: #line)
             .tryMap(\.data)
@@ -54,11 +61,11 @@ class ExampleModelView: CancellableBagProvider {
     deinit {
         print("Sucessfuly deinitialized ExampleViewModel. No memory leaks!")
     }
-    // MARK: - MultiThreaded
+    // MARK: - MultiThreadedMethod
     func loadRequestWithMultiThreaded(completion: @escaping ([GenericModelType]) -> Void) {
         ApiCaller.shared.makeConcurrentCallWithClosures(
-            concurrentRequests: [apiManager.usersService(),
-                                 apiManager.creatingAPostService(
+            concurrentRequests: [usersService(),
+                                 creatingAPostService(
                                     location: .body,
                                     params: ["title": "foo", "body": "bar", "userId": "1"])],
             qos: .userInitiated, attributes: .concurrent) { arrayOfTuples in

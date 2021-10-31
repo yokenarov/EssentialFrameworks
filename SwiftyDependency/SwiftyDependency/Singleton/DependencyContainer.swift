@@ -11,11 +11,10 @@ import Foundation
  
  NOTE: There is a convinience propertyWrapper called @ResolvedDependency, which is meant to as the name suggests - resolve a dependency. More @ ResolvedDependency property wrapper.
  */
-public class DependencyCotainer: DependencyContainerInterface {
-    var dependencies = [String : WeakAnyObject]()
+public class DependencyCotainer {
+    private var dependencies = [String : WeakAnyObject]()
     public static var shared = DependencyCotainer()
     private init() {}
-    
     /**
      This function registers the a dependency of type T.
      */

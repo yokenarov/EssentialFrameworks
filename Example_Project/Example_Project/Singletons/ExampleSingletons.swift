@@ -13,15 +13,3 @@ class ApiCaller: APICallerInterface {
     static let shared = ApiCaller()
     private init() {}
 }
-class AlertPresenter {
-    static let shared = AlertPresenter()
-    private init() {}
-    func presentAlert(viewController: UIViewController, errorMessage: String) {
-        let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
-        let action = UIAlertAction(title: "oK", style: .default) { _ in
-            alert.dismiss(animated: true)
-        }
-        alert.addAction(action)
-        viewController.present(alert, animated: true)
-    }
-}
