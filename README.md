@@ -9,7 +9,7 @@ Open terminal and cd into the cloned project directory then run:
 
 ![Alt text](assemblingWorkspace.png?raw=true)
 
-cd Frameworks
+cd Frameworks(use the directory that you named during the cloning process)
 
 sudo chmod +x assembleExampleWorkspace
 
