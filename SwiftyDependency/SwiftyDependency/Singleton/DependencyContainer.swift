@@ -14,6 +14,7 @@ import Foundation
 public class DependencyCotainer {
     private var dependencies = [String : WeakAnyObject]()
     public static var shared = DependencyCotainer()
+    private let threadSafetyManager = DispatchQueue(label: UUID(uuidString: "com.dependencyContainerQueue")?.uuidString ?? "")
     private init() {}
     /**
      This function registers the a dependency of type T.
@@ -23,25 +24,29 @@ public class DependencyCotainer {
     }
     /**
      This function resolves an already registered dependency of type T.
-     NOTE: calling this will without registering your dependency first will cause a precondition to crash your app. A suggested alternative is to use the @ResolvedDependency property wrapper to resolve the dependency, but the same warining applies to it as well. 
+     NOTE: calling this will without registering your dependency first will cause a precondition to crash your app. A suggested alternative is to use the @ResolvedDependency property wrapper to resolve the dependency, but the same warining applies to it as well.
      */
     public static func resolve<T: Dependency>() -> T {
         shared.resolve()
     }
     private func register<T: Dependency>(_ dependency: T) {
-        let key = "\(type(of: T.self))"
-        let weakReference = WeakAnyObject(value: dependency as AnyObject) // This helper class helps create a weak reference to the Dependency.
-        dependencies[key] = weakReference
+        threadSafetyManager.sync {
+            let key = "\(type(of: T.self))"
+            let weakReference = WeakAnyObject(value: dependency as AnyObject) // This helper class helps create a weak reference to the Dependency.
+            dependencies[key] = weakReference
+        }
     }
     
     private func resolve<T: Dependency>() -> T {
-        let key = "\(type(of: T.self))"
-        let weakDependency = dependencies[key]
-        
-        precondition(weakDependency != nil, "No dependency was registered. Check if you forgot to register it in the container.")
-        let dependency = weakDependency?.value as? T
-        
-        precondition(dependency != nil, "Dependency \(T.self) was deallocated and could not be resolved.")
-        return dependency!
+        threadSafetyManager.sync {
+            let key = "\(type(of: T.self))"
+            let weakDependency = dependencies[key]
+            
+            precondition(weakDependency != nil, "No dependency was registered. Check if you forgot to register it in the container.")
+            let dependency = weakDependency?.value as? T
+            
+            precondition(dependency != nil, "Dependency \(T.self) was deallocated and could not be resolved.")
+            return dependency!
+        }
     }
 }
