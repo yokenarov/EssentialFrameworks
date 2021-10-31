@@ -15,16 +15,16 @@ class ConcurencyManager {
     }
     
     func makeConcurrentCallClosures(concurrentRequests: [Request],
-    with providedResponseAndData: ResponseAndDataInterface? = ResponseAndData(response: URLResponse(), data: Data()), completionRequests: @escaping ([(Int, ResponseAndDataInterface)]) -> () ) {
+    with providedResponseAndData: ResponseWithDataInterface? = ResponseAndData(response: URLResponse(), data: Data()), completionRequests: @escaping ([(Int, ResponseWithDataInterface)]) -> () ) {
         
         let dispathGroup: DispatchGroup = DispatchGroup()
-        var completedRequests: [(Int, ResponseAndDataInterface)] = []
+        var completedRequests: [(Int, ResponseWithDataInterface)] = []
        
         for (requestIndex, request) in concurrentRequests.enumerated() {
-            print("DispatchGroup enters with Request \(requestIndex+1)!")
             dispathGroup.enter()
-           concurrentQueue.async(group: dispathGroup, qos: .userInitiated, execute: { 
-           
+            
+           concurrentQueue.async(group: dispathGroup, qos: .userInitiated, execute: {
+               print("Request \(requestIndex+1) has been sent to a concurrent background thread.")
             var unwrappedRequest: URLRequest?
             do { try unwrappedRequest = request.fullRequest } catch {
                 let responseAndData = ResponseAndData(response: URLResponse(), data: Data())
@@ -51,11 +51,11 @@ class ConcurencyManager {
                     responseAndData = ResponseAndData(response: response ?? URLResponse(), data: data ?? Data())
                 completedRequests.append((requestIndex, responseAndData!))
                 dispathGroup.leave()
-                print("DispatchGroup leaves with Request \(requestIndex+1)!")
             }.resume()
            })
         }
         dispathGroup.notify(queue: .main) {
+            print("\(completedRequests.count) Requests have finished their work and are now returning to the main thread.")
             completionRequests(completedRequests)
         }
     }

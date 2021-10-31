@@ -10,7 +10,7 @@ import Foundation
 /**
 This is a helper struct meant to encapsulate the incoming response and data from a networkcall and print some usefull information about the status of the network call itself. 
 */
-public struct ResponseAndData: ResponseAndDataInterface {
+public struct ResponseAndData: ResponseWithDataInterface {
 public var statusCode: Int?
 public var url: String?
 public var data: Data

@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-extension Publisher where Output == ResponseAndDataInterface {
+extension Publisher where Output == ResponseWithDataInterface {
     /**
      An operator that prints a predifined status of the incoming response.
      

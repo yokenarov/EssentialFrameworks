@@ -17,7 +17,7 @@ extension APICallerInterface {
      - wtihResponseAndData: This parameter is  ResponseAndDataInterface object, which has some printing functionality, to communicate how the response was returned. It already has a default value, you only need to use it if you need a custom implemenattion of the ResponseAndDataInterface.
      */
     public func makeURLRequesWithPublisher(for request: Request,
-                                           with providedResponseAndData: ResponseAndDataInterface? = ResponseAndData(response: URLResponse(), data: Data()), cancellableBagProvider: CancellableBagProvider) -> AnyPublisher<ResponseAndDataInterface, NetworkingAPIError> {
+                                           with providedResponseAndData: ResponseWithDataInterface? = ResponseAndData(response: URLResponse(), data: Data()), cancellableBagProvider: CancellableBagProvider) -> AnyPublisher<ResponseWithDataInterface, NetworkingAPIError> {
         var mutableResponseAndData = providedResponseAndData
         var unwrappedRequest: URLRequest?
         
@@ -27,7 +27,7 @@ extension APICallerInterface {
         }
         
         let publisher = URLSession.shared.dataTaskPublisher(for: unwrappedRequest!)
-            .tryMap() { incomingURLResponse -> ResponseAndDataInterface in
+            .tryMap() { incomingURLResponse -> ResponseWithDataInterface in
                 mutableResponseAndData?.response = incomingURLResponse.response
                 mutableResponseAndData?.data = incomingURLResponse.data
                 return mutableResponseAndData!
@@ -48,7 +48,7 @@ extension APICallerInterface {
      */
     public func makeURLRequestWithClosure<ModelType: Codable>(for request: Request,
                                                               with modelType: ModelType.Type,
-                                                              withResponseAndData completion: @escaping (ModelType?, ResponseAndDataInterface?) -> Void) {
+                                                              withResponseAndData completion: @escaping (ModelType?, ResponseWithDataInterface?) -> Void) {
         var unwrappedRequest: URLRequest?
         var responseAndData: ResponseAndData?
         do { try unwrappedRequest = request.fullRequest } catch { print(error) }
@@ -129,7 +129,7 @@ extension APICallerInterface {
         }.resume()
     }
     
-    public func makeConcurrentCallWithClosures(concurrentRequests: [Request], qos: DispatchQoS,attributes: DispatchQueue.Attributes, completedRequests: @escaping ([(Int, ResponseAndDataInterface)]) -> ()) {
+    public func makeConcurrentCallWithClosures(concurrentRequests: [Request], qos: DispatchQoS,attributes: DispatchQueue.Attributes, completedRequests: @escaping ([(Int, ResponseWithDataInterface)]) -> ()) {
         let concurrencyManager = ConcurencyManager(qos: qos, attributes: attributes, queue: .global())
         concurrencyManager.makeConcurrentCallClosures(concurrentRequests: concurrentRequests) { arrayOfTuples in
                 completedRequests(arrayOfTuples)

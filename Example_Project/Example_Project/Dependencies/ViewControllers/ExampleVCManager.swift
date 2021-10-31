@@ -16,6 +16,7 @@ class ExampleVCManager: Dependency, DataTaskWithDelegate {
     var cancellableBag = Set<AnyCancellable>()
     var tableView: GenericTableView?
     var items: [GenericSectionWithItems]?
+    // MARK: - Publisher
     func loadTableviewWithPublisherData() {
         apiServiceManager.loadRequestWithPublisher()
             .sink { [weak self] _ in
@@ -28,6 +29,7 @@ class ExampleVCManager: Dependency, DataTaskWithDelegate {
                 }
             }.store(in: &cancellableBag)
     }
+    // MARK: - Closure
     func loadTableViewWithClosureData() {
         apiServiceManager.loadRequestWithClosure { [weak self] genericItem in
             self?.items?[0].items = genericItem.items

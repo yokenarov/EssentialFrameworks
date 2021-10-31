@@ -12,21 +12,12 @@ import GenericViews
 import Combine
 class ApiManager: Dependency, CancellableBagProvider {
     var cancellableBag = Set<AnyCancellable>()
-    func usersService() -> ApiRequests {
-        return ApiRequests.users
-    }
-    func creatingAPostService(location: ParameterLocation?, params: [String: String]?) -> ApiRequests {
-        return ApiRequests.createPost(location: location, params: params)
-    }
-    func commentsService(location: ParameterLocation?, params: [String: String]?) -> ApiRequests {
-        return ApiRequests.comments(location: location, params: params)
-    }
     func loadRequestWithClosure(completion: @escaping (GenericSectionWithItems) -> Void) {
         let genericTableViewItemWithSection  = GenericSectionWithItems(
             sectionLableBuilder: SectionLableBuilder(sectiontext: "", fontSize: 20, sectionHeight: 50, ""),
             items: [])
         ApiCaller.shared.makeURLRequestWithClosure(
-            for: creatingAPostService(location: .body,
+            for: ApiRequests.createPost(location: .body,
                                                  params: ["title": "foo", "body": "bar", "userId": "1"]),
                with: Comment.self) { decodedResponse, responseAndData in
                    responseAndData?.printResponseStatus(file: #file, function: #function, line: #line)
@@ -42,7 +33,7 @@ class ApiManager: Dependency, CancellableBagProvider {
     }
     // MARK: - PublisherMethod
     func loadRequestWithPublisher() -> AnyPublisher<[User], Never> {
-        let publisher = ApiCaller.shared.makeURLRequesWithPublisher(for: usersService(),
+        let publisher = ApiCaller.shared.makeURLRequesWithPublisher(for: ApiRequests.users,
                                                                        cancellableBagProvider: self)
             .printNetworkResponseInfo(file: #file, function: #function, line: #line)
             .tryMap(\.data)
@@ -64,8 +55,8 @@ class ApiManager: Dependency, CancellableBagProvider {
     // MARK: - MultiThreadedMethod
     func loadRequestWithMultiThreaded(completion: @escaping ([GenericModelType]) -> Void) {
         ApiCaller.shared.makeConcurrentCallWithClosures(
-            concurrentRequests: [usersService(),
-                                 creatingAPostService(
+            concurrentRequests: [ApiRequests.users,
+                                 ApiRequests.createPost(
                                     location: .body,
                                     params: ["title": "foo", "body": "bar", "userId": "1"])],
             qos: .userInitiated, attributes: .concurrent) { arrayOfTuples in
