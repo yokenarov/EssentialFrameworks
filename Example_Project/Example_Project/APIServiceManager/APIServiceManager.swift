@@ -7,7 +7,8 @@
 
 import Foundation
 import NetworkingAPI
-class ApiManager {
+import SwiftyDependency
+class ApiManager: Dependency {
     func usersService() -> ApiRequests {
         return ApiRequests.users
     }

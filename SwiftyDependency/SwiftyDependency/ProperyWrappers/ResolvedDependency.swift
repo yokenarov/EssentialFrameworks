@@ -10,7 +10,7 @@ import Foundation
  A propery wrapper meant to only resolve REGISTERED dependencies. Example of use @ResolvedDependency var "yourVariable" : "theTypeOfYourRegisteredDependency"
  */
 @propertyWrapper
-public class ResolvedDependency<T> {
+public class ResolvedDependency<T: Dependency> {
     public var wrappedValue: T
     public init(){
         wrappedValue = DependencyCotainer.resolve()

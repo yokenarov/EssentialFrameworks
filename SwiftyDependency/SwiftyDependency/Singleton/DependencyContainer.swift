@@ -19,23 +19,23 @@ public class DependencyCotainer: DependencyContainerInterface {
     /**
      This function registers the a dependency of type T.
      */
-    public static func register<T>(_ dependency: T) {
+    public static func register<T: Dependency>(_ dependency: T) {
         shared.register(dependency)
     }
     /**
      This function resolves an already registered dependency of type T.
      NOTE: calling this will without registering your dependency first will cause a precondition to crash your app. A suggested alternative is to use the @ResolvedDependency property wrapper to resolve the dependency, but the same warining applies to it as well. 
      */
-    public static func resolve<T>() -> T {
+    public static func resolve<T: Dependency>() -> T {
         shared.resolve()
     }
-    private func register<T>(_ dependency: T) {
+    private func register<T: Dependency>(_ dependency: T) {
         let key = "\(type(of: T.self))"
         let weakReference = WeakAnyObject(value: dependency as AnyObject) // This helper class helps create a weak reference to the Dependency.
         dependencies[key] = weakReference
     }
     
-    private func resolve<T>() -> T {
+    private func resolve<T: Dependency>() -> T {
         let key = "\(type(of: T.self))"
         let weakDependency = dependencies[key]
         

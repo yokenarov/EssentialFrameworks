@@ -6,6 +6,7 @@
 //
 
 import Foundation
-protocol DependencyContainerInterface {
-    var dependencies: [String: WeakAnyObject] { get set } 
+ protocol DependencyContainerInterface {
+    var dependencies: [String: WeakAnyObject] { get set }
 }
+public protocol Dependency: AnyObject {}

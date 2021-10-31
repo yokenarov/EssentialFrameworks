@@ -3,4 +3,54 @@
    uuid = "61BA6540-FEDA-49CE-8B31-75C8BD004CBB"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2F5DAF3F-7984-45BF-B5BD-EACD01AF666F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SwiftyDependency/SwiftyDependency/Singleton/DependencyContainer.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "register(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2F5DAF3F-7984-45BF-B5BD-EACD01AF666F - 9ee9a501aa6bb89e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SwiftyDependency.DependencyCotainer.register&lt;&#x3c4;_0_0&gt;(&#x3c4;_0_0) -&gt; ()"
+                  moduleName = "SwiftyDependency"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jordankenarov/Frameworks/SwiftyDependency/SwiftyDependency/Singleton/DependencyContainer.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "35"
+                  endingLineNumber = "35"
+                  offsetFromSymbolStart = "540">
+               </Location>
+               <Location
+                  uuid = "2F5DAF3F-7984-45BF-B5BD-EACD01AF666F - 155fc2981d9ec62a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SwiftyDependency.DependencyCotainer.register&lt;&#x3c4;_0_0 where &#x3c4;_0_0: SwiftyDependency.Dependency&gt;(&#x3c4;_0_0) -&gt; ()"
+                  moduleName = "SwiftyDependency"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jordankenarov/Frameworks/SwiftyDependency/SwiftyDependency/Singleton/DependencyContainer.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "35"
+                  endingLineNumber = "35"
+                  offsetFromSymbolStart = "427">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
